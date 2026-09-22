@@ -1562,3 +1562,14 @@ video.slide__video-bg {
   }
 }
 
+/* -----------------------------------------------
+   AJUSTE DE ESPACIADO INFERIOR EN MÓVIL
+   Previene el solapamiento con la barra de navegación del navegador
+   ----------------------------------------------- */
+@media screen and (max-width: 768px) {
+  .site-footer {
+    padding-bottom: calc(3rem + env(safe-area-inset-bottom));
+  }
+}
+
+
