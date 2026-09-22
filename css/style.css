@@ -1,0 +1,1564 @@
+/* ================================================
+   SANDA — Ingeniero Artista
+   Hoja de estilos principal
+   Dark Mode · Minimalista · Tesla-inspired
+   ================================================ */
+
+/* ----------------------------------------
+   0. FUENTES PERSONALIZADAS
+   ---------------------------------------- */
+@font-face {
+  font-family: 'Sanda1';
+  src: url('../assets/fonts/Sanda1-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ----------------------------------------
+   1. CSS CUSTOM PROPERTIES (TEMA OSCURO)
+   Variables centralizadas para fácil personalización.
+   Para cambiar colores: modifica solo estos valores.
+   ---------------------------------------- */
+:root {
+  /* Fondos */
+  --bg-primary: #000000;
+  --bg-secondary: #111111;
+  --bg-card: #1a1a1a;
+  --bg-elevated: #222222;
+
+  /* Textos */
+  --text-primary: #ffffff;
+  --text-secondary: #999999;
+  --text-muted: #666666;
+
+  /* Acentos */
+  --accent: #e0e0e0;
+  --accent-hover: #ffffff;
+
+  /* Transiciones */
+  --transition-speed: 0.6s;
+  --transition-fast: 0.3s;
+  --transition-curve: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Tipografía */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-brand: 'Sanda1', cursive;
+}
+
+/* ----------------------------------------
+   2. RESET GLOBAL
+   Normaliza estilos entre navegadores.
+   ---------------------------------------- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Bloquear scroll vertical cuando el slider está activo */
+body.no-scroll {
+  overflow: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* ----------------------------------------
+   3. SCROLLBAR PERSONALIZADA
+   Sutil y acorde al tema oscuro.
+   ---------------------------------------- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
+/* ----------------------------------------
+   4. LAZY LOADING — Placeholders
+   Las imágenes con data-src empiezan borrosas.
+   ---------------------------------------- */
+.lazy {
+  background-color: var(--bg-card);
+  transition: filter var(--transition-fast) ease;
+}
+
+.lazy:not(.loaded) {
+  filter: blur(8px);
+}
+
+.lazy.loaded {
+  filter: none;
+}
+
+/* ================================================
+   ESTADO A: SLIDER HORIZONTAL (PANTALLA COMPLETA)
+   Navegación entre las 4 categorías principales.
+   ================================================ */
+
+/* ----------------------------------------
+   4.1 Contenedor del Slider
+   ---------------------------------------- */
+.slider {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.slider.hidden {
+  display: none;
+}
+
+/* ----------------------------------------
+   4.2 Header fijo con logo
+   Superpuesto al slider, siempre visible.
+   ---------------------------------------- */
+.slider__header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.slider__logo {
+  font-family: var(--font-brand);
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  pointer-events: auto;
+  transition: opacity var(--transition-fast) ease;
+}
+
+.slider__logo:hover {
+  opacity: 0.7;
+}
+
+/* ----------------------------------------
+   4.3 Track del slider
+   Contenedor flex que se desplaza horizontalmente.
+   ---------------------------------------- */
+.slider__track {
+  display: flex;
+  height: 100vh;
+  transition: transform var(--transition-speed) var(--transition-curve);
+  will-change: transform;
+}
+
+/* ----------------------------------------
+   4.4 Cada Slide individual
+   Pantalla completa con imagen de fondo + overlay.
+   ---------------------------------------- */
+.slide {
+  position: relative;
+  min-width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Imagen de fondo del slide */
+.slide__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.05);
+  transition: transform 8s ease;
+}
+
+/* Efecto Ken Burns sutil al slide activo */
+.slide.active .slide__bg {
+  transform: scale(1);
+}
+
+/* Reglas para vídeo de fondo: sin transform y sin capturar eventos de ratón */
+video.slide__bg,
+video.slide__video-bg {
+  transform: none !important;
+  transition: none !important;
+  pointer-events: none;
+}
+
+/* Fondo con negro puro para Software */
+.slide__bg--gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Imagen de producto dentro del fondo gradiente */
+.slide__bg-product {
+  max-width: 45%;
+  max-height: 80%;
+  object-fit: contain;
+  opacity: 0.85;
+  filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.5));
+}
+
+/* Fondo animado para Filosofía (olas/surf feel) */
+.slide__bg--philosophy {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(ellipse at 20% 80%, rgba(20, 60, 80, 0.4) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(10, 40, 60, 0.3) 0%, transparent 60%),
+    linear-gradient(180deg, #050510 0%, #0a1628 40%, #0d2137 70%, #050510 100%);
+  animation: philosophyShift 12s ease-in-out infinite alternate;
+}
+
+@keyframes philosophyShift {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+/* ----------------------------------------
+   4.5 Overlay del slide
+   Gradiente oscuro con contenido (título, CTA).
+   ---------------------------------------- */
+.slide__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.2) 45%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 6rem;
+  z-index: 2;
+}
+
+/* Etiqueta de categoría (texto pequeño encima del título) */
+.slide__category {
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+/* Título grande del slide */
+.slide__title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+  max-width: 700px;
+}
+
+/* Botón CTA "Explora..." */
+.slide__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--text-primary);
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  transition: all var(--transition-fast) ease;
+  align-self: flex-start;
+}
+
+.slide__cta:hover {
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  border-color: var(--text-primary);
+}
+
+.slide__cta-arrow {
+  transition: transform var(--transition-fast) ease;
+  font-size: 1.2rem;
+}
+
+.slide__cta:hover .slide__cta-arrow {
+  transform: translateX(6px);
+}
+
+/* ----------------------------------------
+   4.6 Controles del Slider (flechas + dots)
+   ---------------------------------------- */
+.slider__controls {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  z-index: 10;
+}
+
+/* Flechas de navegación */
+.slider__arrow {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast) ease;
+}
+
+.slider__arrow:hover {
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  border-color: var(--text-primary);
+}
+
+/* Dots indicadores */
+.slider__dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.slider__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast) ease;
+  padding: 0;
+}
+
+.slider__dot:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.slider__dot.active {
+  background: var(--text-primary);
+  border-color: var(--text-primary);
+  transform: scale(1.2);
+}
+
+
+/* ================================================
+   ESTADO B: VISTAS DE DETALLE (SCROLL VERTICAL)
+   Contenido específico de cada categoría.
+   ================================================ */
+
+/* ----------------------------------------
+   5.1 Contenedor de Detalles
+   ---------------------------------------- */
+.detail {
+  min-height: 100vh;
+  background: var(--bg-primary);
+}
+
+.detail.hidden {
+  display: none;
+}
+
+/* Solo muestra la sección activa */
+.detail__section {
+  display: none;
+}
+
+.detail__section.active {
+  display: block;
+}
+
+/* ----------------------------------------
+   5.2 Botón flotante "Volver"
+   Siempre visible en las vistas de detalle.
+   ---------------------------------------- */
+.detail__back {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-primary);
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all var(--transition-fast) ease;
+}
+
+.detail__back:hover {
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  border-color: var(--text-primary);
+}
+
+/* ----------------------------------------
+   5.3 Hero de detalle (imagen grande arriba)
+   ---------------------------------------- */
+.detail__hero {
+  position: relative;
+  height: 70vh;
+  overflow: hidden;
+}
+
+.detail__hero-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+}
+
+.detail__hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+}
+
+.detail__hero-content {
+  position: absolute;
+  bottom: 4rem;
+  left: 6rem;
+  z-index: 2;
+}
+
+.detail__hero-title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  line-height: 1.15;
+}
+
+.detail__hero-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+/* ----------------------------------------
+   5.4 Contenido del detalle (max-width centrado)
+   ---------------------------------------- */
+.detail__content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+/* ----------------------------------------
+   5.5 Cita / Blockquote destacada
+   ---------------------------------------- */
+.detail__quote {
+  font-size: clamp(1.3rem, 2.5vw, 2rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 3rem 2rem;
+  border-left: 3px solid var(--accent);
+  margin: 3rem auto;
+  max-width: 800px;
+  line-height: 1.6;
+}
+
+/* ----------------------------------------
+   5.6 Encabezado de sección reutilizable
+   ---------------------------------------- */
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-header__label {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.section-header__title {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 600;
+}
+
+.mass-production__desc {
+  max-width: 900px;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-top: 1.25rem;
+  padding-left: 1.25rem;
+  border-left: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+
+/* ================================================
+   6. SECCIÓN DISEÑO — Grid de productos
+   ================================================ */
+.design-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.design-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  aspect-ratio: 4 / 3;
+  cursor: pointer;
+  background: var(--bg-card);
+}
+
+.design-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.design-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Información del producto (aparece al hover) */
+.design-card__info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+  transform: translateY(100%);
+  transition: transform var(--transition-fast) ease;
+}
+
+.design-card:hover .design-card__info {
+  transform: translateY(0);
+}
+
+.design-card__name {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.design-card__desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+
+/* ================================================
+   7. SECCIÓN SOFTWARE — Layout de producto
+   ================================================ */
+
+/* App header (icono + nombre) */
+.software-hero {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 0;
+  margin-bottom: 2rem;
+}
+
+.software-hero__icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 22px;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.software-hero__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.software-hero__text h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.software-hero__tagline {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}
+
+/* Problema / Solución */
+.software-problem-solution {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin: 3rem 0;
+}
+
+.software-problem,
+.software-solution {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 2.5rem;
+}
+
+.software-problem h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #ff6b6b;
+}
+
+.software-solution h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #4ecdc4;
+}
+
+.software-problem p,
+.software-solution p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* Carousel horizontal de screenshots */
+.software-screenshots {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding: 1rem 0 2rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.software-screenshots::-webkit-scrollbar {
+  height: 4px;
+}
+
+.software-screenshots::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 2px;
+}
+
+.software-screenshots__item {
+  min-width: 280px;
+  max-width: 320px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  scroll-snap-align: start;
+  background: var(--bg-card);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: transform var(--transition-fast) ease, box-shadow var(--transition-fast) ease;
+}
+
+.software-screenshots__item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.software-screenshots__item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* CTA para descargar la app */
+.software-cta-container {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.software-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: all var(--transition-fast) ease;
+}
+
+.software-cta:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.15);
+}
+
+
+/* ================================================
+   8. SECCIÓN FILOSOFÍA — YouTube / Videoblog
+   ================================================ */
+
+/* Contenedor del vídeo principal */
+.philosophy-video {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 3rem;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-card);
+}
+
+.philosophy-video iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Grid de vídeos tipo videoblog */
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.philosophy-card {
+  background: var(--bg-card);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform var(--transition-fast) ease;
+  display: block;
+}
+
+.philosophy-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Thumbnail del vídeo con icono play superpuesto */
+.philosophy-card__thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.philosophy-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.philosophy-card:hover .philosophy-card__thumb img {
+  transform: scale(1.05);
+}
+
+.philosophy-card__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  transition: all var(--transition-fast) ease;
+}
+
+.philosophy-card:hover .philosophy-card__play {
+  opacity: 1;
+  background: rgba(255, 0, 0, 0.8);
+}
+
+/* Información del vídeo */
+.philosophy-card__info {
+  padding: 1rem 1.25rem;
+}
+
+.philosophy-card__title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.35rem;
+  line-height: 1.4;
+}
+
+.philosophy-card__channel {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+
+/* ================================================
+   9. SECCIÓN ARTE — Galería Masonry
+   ================================================ */
+.art-masonry {
+  columns: 3;
+  column-gap: 1rem;
+}
+
+.art-masonry__item {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+
+.art-masonry__item img {
+  width: 100%;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.art-masonry__item:hover img {
+  transform: scale(1.03);
+}
+
+/* Caption superpuesto (aparece al hover) */
+.art-masonry__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+  opacity: 0;
+  transition: opacity var(--transition-fast) ease;
+}
+
+.art-masonry__item:hover .art-masonry__caption {
+  opacity: 1;
+}
+
+.art-masonry__caption span {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+
+/* ================================================
+   10. LIGHTBOX — Visor de imágenes
+   ================================================ */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast) ease;
+}
+
+.lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox__img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.lightbox__close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast) ease;
+}
+
+.lightbox__close:hover {
+  background: var(--text-primary);
+  color: var(--bg-primary);
+}
+
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.5);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast) ease;
+}
+
+.lightbox__nav:hover {
+  background: var(--text-primary);
+  color: var(--bg-primary);
+}
+
+.lightbox__nav--prev {
+  left: 2rem;
+}
+
+.lightbox__nav--next {
+  right: 2rem;
+}
+
+
+/* ================================================
+   11. FOOTER
+   ================================================ */
+.site-footer {
+  background: var(--bg-secondary);
+  padding: 2rem;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.site-footer__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.site-footer__brand {
+  font-family: var(--font-brand);
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+}
+
+.site-footer__separator {
+  color: var(--text-muted);
+}
+
+.site-footer__text {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.site-footer__link {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  transition: color var(--transition-fast) ease;
+}
+
+.site-footer__link:hover {
+  color: var(--text-primary);
+}
+
+
+/* ================================================
+   12. ANIMACIONES
+   ================================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Clase que dispara la animación (se añade vía JS) */
+.animate-in {
+  animation: slideUp 0.6s ease forwards;
+}
+
+/* Stagger: cada hijo se anima con un poco de retraso */
+.animate-in:nth-child(2) { animation-delay: 0.1s; }
+.animate-in:nth-child(3) { animation-delay: 0.15s; }
+.animate-in:nth-child(4) { animation-delay: 0.2s; }
+.animate-in:nth-child(5) { animation-delay: 0.25s; }
+.animate-in:nth-child(6) { animation-delay: 0.3s; }
+.animate-in:nth-child(7) { animation-delay: 0.35s; }
+.animate-in:nth-child(8) { animation-delay: 0.4s; }
+.animate-in:nth-child(9) { animation-delay: 0.45s; }
+.animate-in:nth-child(10) { animation-delay: 0.5s; }
+.animate-in:nth-child(11) { animation-delay: 0.55s; }
+.animate-in:nth-child(12) { animation-delay: 0.6s; }
+.animate-in:nth-child(13) { animation-delay: 0.65s; }
+
+/* Los elementos con animate-on-scroll empiezan ocultos */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+
+/* ================================================
+   13. TRANSICIONES ENTRE ESTADOS
+   Fade del slider al entrar/salir de una vista detalle.
+   ================================================ */
+.slider.fade-out {
+  animation: fadeOut 0.5s ease forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.detail.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+
+
+/* ================================================
+   14. RESPONSIVE — Adaptaciones por breakpoint
+   
+   REGLA DE ORO: Todo lo de abajo está dentro de
+   media queries. El código base (arriba) es
+   intocable y solo afecta a escritorio.
+   ================================================ */
+
+
+/* -----------------------------------------------
+   TABLETS GRANDES (≤ 1024px)
+   ----------------------------------------------- */
+@media screen and (max-width: 1024px) {
+
+  /* Slide overlay: reducir padding */
+  .slide__overlay {
+    padding: 4rem;
+  }
+
+  /* Hero de detalle: altura reducida */
+  .detail__hero {
+    height: 50vh;
+  }
+
+  .detail__hero-content {
+    left: 4rem;
+    bottom: 3rem;
+  }
+
+  /* Imagen de producto: más grande en tablet */
+  .slide__bg-product {
+    max-width: 55%;
+  }
+
+  /* Software: pasar a columna única */
+  .software-problem-solution {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* -----------------------------------------------
+   TABLETS (≤ 768px)
+   ----------------------------------------------- */
+@media screen and (max-width: 768px) {
+
+  /* ── SLIDER ── */
+  .slide__overlay {
+    padding: 2rem 1.5rem 5rem; /* espacio extra abajo para los controles */
+  }
+
+  .slide__title {
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+    margin-bottom: 1.25rem;
+  }
+
+  .slide__cta {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9rem;
+    width: 100%;                /* área táctil generosa */
+    justify-content: center;
+  }
+
+  /* Controles del slider: más pequeños y centrados */
+  .slider__controls {
+    bottom: 1.5rem;
+    gap: 1rem;
+  }
+
+  .slider__arrow {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* Dots: objetivo táctil mínimo de 44px */
+  .slider__dot {
+    width: 14px;
+    height: 14px;
+    padding: 8px;
+    box-sizing: content-box;
+  }
+
+  /* ── HERO DE DETALLE ── */
+  .detail__hero {
+    height: 45vh;
+  }
+
+  .detail__hero-content {
+    left: 1.5rem;
+    right: 1.5rem;
+    bottom: 1.75rem;
+  }
+
+  .detail__hero-title {
+    font-size: clamp(1.6rem, 5vw, 2.5rem);
+  }
+
+  .detail__hero-subtitle {
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+
+  /* ── CONTENIDO DE DETALLE ── */
+  .detail__content {
+    padding: 2.5rem 1.25rem;
+  }
+
+  .detail__quote {
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    padding: 1.75rem 1.25rem;
+    border-left-width: 2px;
+  }
+
+  /* ── DISEÑO ── */
+  .design-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  /* En táctil: info del card siempre visible, sin hover */
+  .design-card__info {
+    transform: translateY(0);
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  }
+
+  /* ── SOFTWARE ── */
+  .software-hero {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .software-hero__icon {
+    width: 80px;
+    height: 80px;
+  }
+
+  .software-hero__text h2 {
+    font-size: 1.6rem;
+  }
+
+  .software-problem-solution {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .software-problem,
+  .software-solution {
+    padding: 1.75rem;
+  }
+
+  /* Screenshots: ancho cómodo para deslizar con el pulgar */
+  .software-screenshots {
+    justify-content: flex-start;
+    padding: 1rem 1.25rem 2rem;
+    gap: 1rem;
+  }
+
+  .software-screenshots__item {
+    min-width: 220px;
+    max-width: 240px;
+  }
+
+  /* CTA de descarga: ocupar todo el ancho */
+  .software-cta {
+    width: 100%;
+    max-width: 340px;
+    justify-content: center;
+    padding: 1rem 2rem;
+  }
+
+  /* Imagen de producto en slide: más grande */
+  .slide__bg-product {
+    max-width: 70%;
+  }
+
+  /* ── FILOSOFÍA ── */
+  .philosophy-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* ── ARTE ── */
+  .art-masonry {
+    columns: 2;
+    column-gap: 0.75rem;
+  }
+
+  /* ── PRODUCCIÓN EN MASA ── */
+  .mass-production__desc {
+    font-size: 0.95rem;
+    padding-left: 1rem;
+  }
+}
+
+
+/* -----------------------------------------------
+   MÓVILES (≤ 480px)
+   ----------------------------------------------- */
+@media screen and (max-width: 480px) {
+
+  /* ── LOGO ── */
+  .slider__logo {
+    font-size: 2rem;
+  }
+
+  /* ── SLIDER ── */
+  .slide__overlay {
+    padding: 1.5rem 1.25rem 5rem;
+  }
+
+  .slide__category {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+  }
+
+  .slide__title {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+    margin-bottom: 1rem;
+  }
+
+  .slide__cta {
+    font-size: 0.85rem;
+    padding: 0.875rem 1.25rem;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  /* Imagen de producto: casi todo el ancho */
+  .slide__bg-product {
+    max-width: 82%;
+  }
+
+  /* ── BOTÓN VOLVER ── */
+  .detail__back {
+    top: 0.875rem;
+    left: 0.875rem;
+    padding: 0.625rem 1rem;
+    font-size: 0.8rem;
+    gap: 0.35rem;
+  }
+
+  /* ── HERO DE DETALLE ── */
+  .detail__hero {
+    height: 42vh;
+    min-height: 220px;
+  }
+
+  .detail__hero-content {
+    left: 1.25rem;
+    right: 1.25rem;
+    bottom: 1.25rem;
+  }
+
+  .detail__hero-title {
+    font-size: clamp(1.35rem, 6vw, 2rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .detail__hero-subtitle {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  /* ── CONTENIDO DE DETALLE ── */
+  .detail__content {
+    padding: 1.75rem 1rem;
+  }
+
+  .detail__quote {
+    font-size: 1rem;
+    padding: 1.25rem 1rem;
+    margin: 1.5rem auto;
+  }
+
+  .section-header {
+    margin-bottom: 1.75rem;
+  }
+
+  /* ── DISEÑO: una columna ── */
+  .design-grid {
+    grid-template-columns: 1fr;
+    gap: 0.875rem;
+  }
+
+  .design-card {
+    aspect-ratio: 16 / 10;
+  }
+
+  /* ── SOFTWARE ── */
+  .software-hero__icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
+  }
+
+  .software-hero__text h2 {
+    font-size: 1.4rem;
+  }
+
+  .software-hero__tagline {
+    font-size: 0.9rem;
+  }
+
+  .software-problem,
+  .software-solution {
+    padding: 1.25rem;
+  }
+
+  .software-problem h3,
+  .software-solution h3 {
+    font-size: 1rem;
+  }
+
+  /* Screenshots: ancho que invita a deslizar */
+  .software-screenshots {
+    padding: 0.75rem 1rem 1.5rem;
+    gap: 0.875rem;
+  }
+
+  .software-screenshots__item {
+    min-width: 200px;
+    max-width: 220px;
+  }
+
+  .software-cta {
+    font-size: 0.95rem;
+    padding: 0.875rem 1.5rem;
+    border-radius: 40px;
+  }
+
+  /* ── FILOSOFÍA ── */
+  .philosophy-card__title {
+    font-size: 0.875rem;
+  }
+
+  /* ── ARTE: una columna ── */
+  .art-masonry {
+    columns: 1;
+  }
+
+  .art-masonry__item {
+    margin-bottom: 0.75rem;
+  }
+
+  /* Caption de arte: siempre visible en móvil */
+  .art-masonry__caption {
+    opacity: 1;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  }
+
+  /* ── LIGHTBOX ── */
+  .lightbox__nav {
+    width: 40px;
+    height: 40px;
+  }
+
+  .lightbox__nav--prev {
+    left: 0.75rem;
+  }
+
+  .lightbox__nav--next {
+    right: 0.75rem;
+  }
+
+  .lightbox__close {
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+  }
+
+  /* ── FOOTER ── */
+  .site-footer__content {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .site-footer__separator {
+    display: none;
+  }
+
+  /* ── PRODUCCIÓN EN MASA ── */
+  .mass-production__desc {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    border-left-width: 2px;
+    padding-left: 0.875rem;
+  }
+}
+
+
+/* -----------------------------------------------
+   MÓVILES MUY PEQUEÑOS (≤ 360px)
+   ----------------------------------------------- */
+@media screen and (max-width: 360px) {
+
+  .slider__logo {
+    font-size: 1.75rem;
+  }
+
+  .slide__title {
+    font-size: 1.4rem;
+  }
+
+  .detail__hero {
+    height: 38vh;
+    min-height: 200px;
+  }
+
+  .software-screenshots__item {
+    min-width: 170px;
+    max-width: 190px;
+  }
+
+  .slide__cta {
+    font-size: 0.8rem;
+    padding: 0.75rem 1rem;
+  }
+}
+

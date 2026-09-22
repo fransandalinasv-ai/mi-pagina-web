@@ -1,0 +1,104 @@
+---
+// Header.astro
+// Componente reutilizable que contiene el branding principal (SANDA)
+// y la barra de navegación principal de la web.
+// Se importa en el Layout para que aparezca en todas las páginas.
+---
+
+<header class="header">
+  {/* Título principal centrado en grande */}
+  <h1 class="header__title">SANDA</h1>
+  
+  {/* Barra de navegación centrada horizontalmente */}
+  <nav class="header__nav">
+    <ul class="header__nav-list">
+      {/* Enlace a la página de productos */}
+      <li class="header__nav-item">
+        <a href="/products" class="header__nav-link">Products</a>
+      </li>
+      
+      {/* Enlace a la página de Life RPG */}
+      <li class="header__nav-item">
+        <a href="/life-rpg" class="header__nav-link">Life RPG</a>
+      </li>
+      
+      {/* Enlace a la página de arte */}
+      <li class="header__nav-item">
+        <a href="/art" class="header__nav-link">Art</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  /* Contenedor principal del header */
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    gap: 2rem;
+  }
+
+  /* Título principal SANDA - grande, centrado y destacado */
+  .header__title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin: 0;
+    text-align: center;
+    letter-spacing: 0.1em;
+  }
+
+  /* Barra de navegación - contenedor flex para centrado */
+  .header__nav {
+    width: 100%;
+  }
+
+  /* Lista de navegación - usa flexbox para distribuir items horizontalmente */
+  .header__nav-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 2rem;
+  }
+
+  /* Cada item de navegación */
+  .header__nav-item {
+    margin: 0;
+  }
+
+  /* Enlaces de navegación con efecto hover */
+  .header__nav-link {
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: inherit;
+    transition: opacity 0.3s ease;
+    padding: 0.5rem 1rem;
+  }
+
+  /* Efecto hover en los enlaces */
+  .header__nav-link:hover {
+    opacity: 0.7;
+  }
+
+  /* Media query para pantallas más pequeñas */
+  @media (max-width: 768px) {
+    .header__title {
+      font-size: 2.5rem;
+    }
+
+    .header__nav-list {
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .header__nav-link {
+      font-size: 1rem;
+    }
+  }
+</style>
