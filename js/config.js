@@ -20,7 +20,7 @@ const DICTIONARY = {
         category: 'Diseño 3D & Fabricación',
         title: 'El diseño es ingeniería<br>con alma.',
         ctaText: 'Explora el Diseño y Fabricación',
-        background: { type: 'image', src: 'assets/images/slides/design-lamp.png', alt: 'Lámpara de diseño 3D orgánico creada por SANDA' },
+        background: { type: 'image', src: 'assets/images/slides/design-lamp.webp', alt: 'Lámpara de diseño 3D orgánico creada por SANDA' },
       },
       {
         id: 'software',
@@ -45,7 +45,7 @@ const DICTIONARY = {
       },
     ],
     design: {
-      hero: { type: 'image', src: 'assets/images/slides/design-lamp.png', alt: 'Lámpara de diseño orgánico SANDA', title: 'Diseño & Fabricación', subtitle: 'De la idea al objeto físico. Diseño industrial, impresión 3D y fabricación digital.' },
+      hero: { type: 'image', src: 'assets/images/slides/design-lamp.webp', alt: 'Lámpara de diseño orgánico SANDA', title: 'Diseño & Fabricación', subtitle: 'De la idea al objeto físico. Diseño industrial, impresión 3D y fabricación digital.' },
       quote: 'Si tu entorno lo haces más bonito, tu vida también lo será.',
       sectionLabel: 'Proyectos',
       sectionTitle: 'Ingeniería de producto',
@@ -122,7 +122,7 @@ const DICTIONARY = {
         category: '3D Design & Manufacturing',
         title: 'Design is engineering<br>with a soul.',
         ctaText: 'Explore Design and Manufacturing',
-        background: { type: 'image', src: 'assets/images/slides/design-lamp.png', alt: 'Organic 3D design lamp created by SANDA' },
+        background: { type: 'image', src: 'assets/images/slides/design-lamp.webp', alt: 'Organic 3D design lamp created by SANDA' },
       },
       {
         id: 'software',
@@ -147,7 +147,7 @@ const DICTIONARY = {
       },
     ],
     design: {
-      hero: { type: 'image', src: 'assets/images/slides/design-lamp.png', alt: 'Organic design lamp by SANDA', title: 'Design & Manufacturing', subtitle: 'From idea to physical object. Industrial design, 3D printing and digital manufacturing.' },
+      hero: { type: 'image', src: 'assets/images/slides/design-lamp.webp', alt: 'Organic design lamp by SANDA', title: 'Design & Manufacturing', subtitle: 'From idea to physical object. Industrial design, 3D printing and digital manufacturing.' },
       quote: 'If you make your surroundings more beautiful, your life will be too.',
       sectionLabel: 'Projects',
       sectionTitle: 'Product Engineering',
