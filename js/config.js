@@ -41,7 +41,7 @@ const DICTIONARY = {
         category: 'Expresión Visual',
         title: 'Cada cuadro es un<br>universo propio.',
         ctaText: 'Explora la Galería de Arte',
-        background: { type: 'image', src: 'assets/images/slides/art-nightsurfer.jpeg', alt: 'Night Surfer BCN - Cuadro original de SANDA' },
+        background: { type: 'image', src: 'assets/images/art/ericeira-vibes.jpg', alt: 'Ericeira Vibes - Cuadro original de SANDA' },
       },
     ],
     design: {
@@ -84,12 +84,12 @@ const DICTIONARY = {
       quote: 'El surf te enseña que no controlas las olas, solo eliges cómo las surfeas.',
       mainVideoEmbed: null,
       videos: [
-        { url: 'https://www.youtube.com/@Sanda.projectAZ', thumbnail: 'assets/images/slides/art-nightsurfer.jpeg', alt: 'Visita el canal de YouTube', title: 'Visita el canal de YouTube', channel: '@Sanda.projectAZ' },
+        { url: 'https://www.youtube.com/@Sanda.projectAZ', thumbnail: 'assets/images/art/ericeira-vibes.jpg', alt: 'Visita el canal de YouTube', title: 'Visita el canal de YouTube', channel: '@Sanda.projectAZ' },
         { url: 'https://www.youtube.com/@Sanda.projectAZ', thumbnail: 'assets/images/branding/sanda-icon.png', alt: 'Próximamente', title: 'Próximamente — Nuevos Episodios', channel: '@Sanda.projectAZ' },
       ],
     },
     art: {
-      hero: { type: 'image', src: 'assets/images/slides/art-nightsurfer.jpeg', alt: 'Night Surfer BCN — Cuadro de SANDA', title: 'Galería de Arte', subtitle: 'Pintura, ilustración y expresión visual libre. Cada cuadro cuenta una historia.' },
+      hero: { type: 'image', src: 'assets/images/art/ericeira-vibes.jpg', alt: 'Ericeira Vibes — Cuadro de SANDA', title: 'Galería de Arte', subtitle: 'Pintura, ilustración y expresión visual libre. Cada cuadro cuenta una historia.' },
       quote: 'El arte no se explica, se siente.',
       sectionLabel: 'Colección',
       sectionTitle: 'Obras Originales',
@@ -143,7 +143,7 @@ const DICTIONARY = {
         category: 'Visual Expression',
         title: 'Every painting is its<br>own universe.',
         ctaText: 'Explore the Art Gallery',
-        background: { type: 'image', src: 'assets/images/slides/art-nightsurfer.jpeg', alt: 'Night Surfer BCN - Original painting by SANDA' },
+        background: { type: 'image', src: 'assets/images/art/ericeira-vibes.jpg', alt: 'Ericeira Vibes - Original painting by SANDA' },
       },
     ],
     design: {
@@ -186,12 +186,12 @@ const DICTIONARY = {
       quote: 'Surfing teaches you that you do not control the waves, you only choose how to surf them.',
       mainVideoEmbed: null,
       videos: [
-        { url: 'https://www.youtube.com/@Sanda.projectAZ', thumbnail: 'assets/images/slides/art-nightsurfer.jpeg', alt: 'Visit the YouTube channel', title: 'Visit the YouTube channel', channel: '@Sanda.projectAZ' },
+        { url: 'https://www.youtube.com/@Sanda.projectAZ', thumbnail: 'assets/images/art/ericeira-vibes.jpg', alt: 'Visit the YouTube channel', title: 'Visit the YouTube channel', channel: '@Sanda.projectAZ' },
         { url: 'https://www.youtube.com/@Sanda.projectAZ', thumbnail: 'assets/images/branding/sanda-icon.png', alt: 'Coming soon', title: 'Coming soon — New Episodes', channel: '@Sanda.projectAZ' },
       ],
     },
     art: {
-      hero: { type: 'image', src: 'assets/images/slides/art-nightsurfer.jpeg', alt: 'Night Surfer BCN — Painting by SANDA', title: 'Art Gallery', subtitle: 'Painting, illustration and free visual expression. Every painting tells a story.' },
+      hero: { type: 'image', src: 'assets/images/art/ericeira-vibes.jpg', alt: 'Ericeira Vibes — Painting by SANDA', title: 'Art Gallery', subtitle: 'Painting, illustration and free visual expression. Every painting tells a story.' },
       quote: 'Art is not explained, it is felt.',
       sectionLabel: 'Collection',
       sectionTitle: 'Original Artworks',
