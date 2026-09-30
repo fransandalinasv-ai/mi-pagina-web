@@ -30,7 +30,17 @@
   <div id="slider-container" class="slider active">
 
     <header class="slider__header">
-      <a href="/" class="slider__logo" aria-label="SANDA - Inicio" id="brand-name">SANDA</a>
+      <!-- Selector de idioma -->
+      <div class="lang-switcher">
+        <button onclick="setLanguage('es')" id="btn-lang-es" class="lang-btn">ES</button>
+        <span class="lang-sep">|</span>
+        <button onclick="setLanguage('en')" id="btn-lang-en" class="lang-btn">EN</button>
+      </div>
+      
+      <a href="/" class="slider__logo" aria-label="AZ DISSENY by SANDA - Inicio" id="brand-name">
+        <span class="logo-principal">AZ DISSENY</span>
+        <span class="firma-sanda">by SANDA</span>
+      </a>
     </header>
 
     <div id="slider-track" class="slider__track" role="region" aria-label="Slider principal">

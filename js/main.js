@@ -295,9 +295,9 @@ const Renderer = {
       c.art      ? this.artSection(c.art)                     : '',
     ].join('');
 
-    // 3. Renderizar logo
+    // 3. Renderizar logo (Desactivado para preservar la estructura custom en HTML de AZ-DISSENY by SANDA)
     const logoEl = document.getElementById('brand-name');
-    if (logoEl) logoEl.textContent = c.brand.name;
+    // if (logoEl) logoEl.textContent = c.brand.name;
 
     // 4. Renderizar footer
     const footerEl = document.getElementById('footer-content');
@@ -698,6 +698,10 @@ const App = {
 
     // 2. Bloquear scroll vertical (estado slider)
     document.body.classList.add('no-scroll');
+
+    // 2.5 Activar el botón del idioma seleccionado
+    const activeLangBtn = document.getElementById(`btn-lang-${typeof currentLang !== 'undefined' ? currentLang : 'es'}`);
+    if (activeLangBtn) activeLangBtn.classList.add('active');
 
     // 3. Inicializar módulos
     Slider.init();

@@ -177,18 +177,86 @@ ul, ol {
   pointer-events: none;
 }
 
+/* ----------------------------------------
+   4.2.0 Selector de Idioma (ES | EN)
+   ---------------------------------------- */
+.lang-switcher {
+  position: absolute;
+  left: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 0.5rem;
+  pointer-events: auto;
+  font-family: var(--font-primary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.lang-btn {
+  color: inherit;
+  transition: color var(--transition-fast) ease;
+}
+
+.lang-btn:hover,
+.lang-btn.active {
+  color: #ffffff;
+}
+
+.lang-sep {
+  cursor: default;
+}
+
+/* ----------------------------------------
+   4.2.1 Logo — Contenedor principal
+   Agrupa "AZ DISSENY" y la firma "SANDA"
+   en un bloque simétrico vertical (apilado).
+   ---------------------------------------- */
 .slider__logo {
-  font-family: var(--font-brand);
-  font-size: 2.5rem;
-  color: var(--text-primary);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center;           /* centra ambos textos perfectamente */
+  justify-content: center;
+  gap: 0.15em;                   /* margen muy sutil entre línea superior e inferior */
   pointer-events: auto;
   transition: opacity var(--transition-fast) ease;
+  text-decoration: none;
 }
 
 .slider__logo:hover {
   opacity: 0.7;
+}
+
+/* ----------------------------------------
+   4.2.2 "AZ DISSENY" — Nombre de marca
+   Sans-serif geométrica, blanco puro,
+   mayúsculas con letter-spacing corporativo.
+   ---------------------------------------- */
+.logo-principal {
+  font-family: 'Inter', 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  line-height: 1;
+}
+
+/* ----------------------------------------
+   4.2.3 "SANDA" — Firma de autor
+   Usa la fuente personalizada Sanda1 ya
+   definida en el @font-face de la sección 0.
+   ---------------------------------------- */
+.firma-sanda {
+  font-family: var(--font-brand);  /* → 'Sanda1', assets/fonts/Sanda1-Regular.otf */
+  font-size: 1.2rem;
+  font-weight: normal;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.08em;
+  text-transform: none;
+  line-height: 1;
 }
 
 /* ----------------------------------------
