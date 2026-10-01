@@ -287,6 +287,7 @@ const Renderer = {
     document.getElementById('slider-track').innerHTML = slidesHtml;
 
     // 2. Renderizar secciones de detalle
+    
     const detailContainer = document.getElementById('detail-sections');
     detailContainer.innerHTML = [
       c.design   ? this.designSection(c.design)              : '',
@@ -294,6 +295,17 @@ const Renderer = {
       c.philosophy ? this.philosophySection(c.philosophy, c.brand) : '',
       c.art      ? this.artSection(c.art)                     : '',
     ].join('');
+    
+    const ctaTitle = c.contactCta || '¿Tienes un reto de ingeniería?';
+    const ctaBtn = c.contactCtaBtn || 'Iniciar Proyecto';
+    const ctaHtml = `<div class="detail__contact-cta"><h3>${ctaTitle}</h3><button>${ctaBtn}</button></div>`;
+    document.querySelectorAll('.detail__section').forEach(sec => {
+       sec.insertAdjacentHTML('beforeend', ctaHtml);
+    });
+    
+    const headerBtn = document.getElementById('header-contact-btn');
+    if (headerBtn) headerBtn.textContent = c.contactBtn || 'Trabaja conmigo';
+
 
     // 3. Renderizar logo (Desactivado para preservar la estructura custom en HTML de AZ-DISSENY by SANDA)
     const logoEl = document.getElementById('brand-name');
@@ -496,6 +508,7 @@ const Transitions = {
 
       // Inicializar módulos dependientes
       LazyLoader.init();
+    Modal.init();
       Animations.init();
       if (sectionId === 'art') Lightbox.init();
 
@@ -688,6 +701,39 @@ function handleKeyboard(e) {
 /* ================================================
    8. APP — Punto de entrada principal
    ================================================ */
+
+/* ================================================
+   X. MODAL DE CONTACTO
+   ================================================ */
+const Modal = {
+  init() {
+    this.modalEl = document.getElementById('contact-modal');
+    this.closeBtn = document.getElementById('modal-close');
+    this.overlay = document.getElementById('modal-overlay');
+    this.headerBtn = document.getElementById('header-contact-btn');
+    
+    if (this.headerBtn) this.headerBtn.addEventListener('click', () => this.open());
+    if (this.closeBtn) this.closeBtn.addEventListener('click', () => this.close());
+    if (this.overlay) this.overlay.addEventListener('click', () => this.close());
+    
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('.detail__contact-cta button')) {
+        this.open();
+      }
+    });
+  },
+  
+  open() {
+    if (!this.modalEl) return;
+    this.modalEl.classList.remove('hidden');
+  },
+  
+  close() {
+    if (!this.modalEl) return;
+    this.modalEl.classList.add('hidden');
+  }
+};
+
 const App = {
   currentView: 'SLIDER',
   activeDetail: null,
@@ -707,6 +753,7 @@ const App = {
     Slider.init();
     Transitions.init();
     LazyLoader.init();
+    Modal.init();
 
     // 4. Teclado global
     document.addEventListener('keydown', handleKeyboard);

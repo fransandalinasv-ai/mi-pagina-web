@@ -6,6 +6,12 @@
 
 const DICTIONARY = {
   es: {
+    contactBtn: "Trabaja conmigo",
+    contactCta: "¿Tienes un reto de ingeniería?",
+    contactCtaBtn: "Iniciar Proyecto",
+    contactBtn: "Work with me",
+    contactCta: "Got an engineering challenge?",
+    contactCtaBtn: "Start Project",
     brand: {
       name: 'SANDA',
       author: 'Francesc Sandalinas',
@@ -108,6 +114,9 @@ const DICTIONARY = {
   },
   
   en: {
+    contactBtn: "Work with me",
+    contactCta: "Got an engineering challenge?",
+    contactCtaBtn: "Start Project",
     brand: {
       name: 'SANDA',
       author: 'Francesc Sandalinas',
