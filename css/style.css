@@ -1640,4 +1640,9 @@ video.slide__video-bg {
   }
 }
 
-
+/* --- Ajuste Logo e Idioma Movil --- */
+@media screen and (max-width: 768px) {
+  .logo-principal { font-size: 1.3rem; }
+  .firma-sanda { font-size: 0.8rem; }
+  .lang-switcher { left: 1rem; top: 1.5rem; transform: none; font-size: 0.75rem; flex-direction: column; gap: 0.2rem; }
+}
