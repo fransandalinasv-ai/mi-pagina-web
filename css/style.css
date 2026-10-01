@@ -1642,7 +1642,9 @@ video.slide__video-bg {
 
 /* --- Ajuste Logo e Idioma Movil --- */
 @media screen and (max-width: 768px) {
-  .logo-principal { font-size: 1.3rem; }
-  .firma-sanda { font-size: 0.8rem; }
-  .lang-switcher { left: 1rem; top: 1.5rem; transform: none; font-size: 0.75rem; flex-direction: column; gap: 0.2rem; }
+  .logo-principal { font-size: 1.2rem !important; }
+  .firma-sanda { font-size: 0.75rem !important; }
+  .slider__logo { gap: 0.1em !important; }
+  .slider__header { flex-direction: column; padding: 1rem; }
+  .lang-switcher { position: relative; left: auto; top: auto; transform: none; flex-direction: row; justify-content: center; margin-bottom: 0.5rem; font-size: 0.75rem; }
 }
