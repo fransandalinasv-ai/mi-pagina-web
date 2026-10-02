@@ -789,10 +789,10 @@ video.slide__video-bg {
 /* Carousel horizontal de screenshots */
 .software-screenshots {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1.5rem;
   overflow-x: auto;
-  padding: 1rem 0 2rem;
+  padding: 1rem 2rem 2rem;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
 }
