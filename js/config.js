@@ -83,6 +83,7 @@ const DICTIONARY = {
         { src: 'assets/images/software/producty-shot-01.png', alt: 'Producty - Comprométete contigo mismo' },
         { src: 'assets/images/software/producty-shot-02.png', alt: 'Producty - Controla tu tiempo' },
         { src: 'assets/images/software/producty-shot-03.png', alt: 'Producty - Desglose inteligente' },
+        { src: 'assets/images/software/producty-shot-04.jpg', alt: 'Producty - Marcaje absoluto y telemetría' },
       ],
     },
     philosophy: {
@@ -188,6 +189,7 @@ const DICTIONARY = {
         { src: 'assets/images/software/producty-shot-01.png', alt: 'Producty - Commit to yourself' },
         { src: 'assets/images/software/producty-shot-02.png', alt: 'Producty - Control your time' },
         { src: 'assets/images/software/producty-shot-03.png', alt: 'Producty - Smart breakdown' },
+        { src: 'assets/images/software/producty-shot-04.jpg', alt: 'Producty - Absolute tracking and telemetry' },
       ],
     },
     philosophy: {
