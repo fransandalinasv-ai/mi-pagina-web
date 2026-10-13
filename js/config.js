@@ -138,13 +138,13 @@ const DICTIONARY = {
         sectionLabel: 'Ecosistema & Eventos Tech',
         sectionTitle: 'VisionarIA & Inteligencia Artificial',
         card: {
-          image: 'assets/images/software/ai-strategy-matrix.jpg',
-          alt: 'Matriz de Arquitectura Técnica y Estrategia de IA Empresarial',
-          badge: 'Arquitectura & Consultoría Tech',
-          title: 'Estrategia, Adopción y Despliegue de IA',
-          subtitle: 'Colaboración Estratégica & Ecosistema VisionarIA',
-          desc: 'Diseño e implementación de arquitecturas técnicas de inteligencia artificial aplicada. Desde la ingesta de datos y bases de datos vectoriales hasta la orquestación de sistemas multi-agente e inferencia en tiempo real, conectando soluciones de IA de alto impacto con necesidades empresariales bajo estrictos protocolos de confidencialidad (NDA).',
-          tags: ['Estrategia de IA', 'Sistemas Multi-Agente', 'Bases Vectoriales', 'Gobernanza & NDA']
+          image: 'assets/images/software/visionaria-potencial-digital.png',
+          alt: 'Francesc Sandalinas e Isabel en el Congreso Potencial Digital con VisionarIA',
+          badge: 'Congreso Potencial Digital',
+          title: 'Estrategia & Despliegue de Inteligencia Artificial',
+          subtitle: 'Colaboración Estratégica con VisionarIA',
+          desc: 'Participación activa en el ecosistema de inteligencia artificial aplicada junto a VisionarIA. Explorando la intersección entre ingeniería de software, estrategia de negocio y adopción tecnológica en eventos de referencia como Potencial Digital, conectando herramientas de IA con necesidades empresariales de alto impacto.',
+          tags: ['Estrategia de IA', 'Adopción Tecnológica', 'Congresos Tech', 'Networking & Alianzas']
         }
       },
     },
@@ -309,13 +309,13 @@ const DICTIONARY = {
         sectionLabel: 'Tech Ecosystem & Events',
         sectionTitle: 'VisionarIA & Applied AI',
         card: {
-          image: 'assets/images/software/ai-strategy-matrix.jpg',
-          alt: 'Enterprise AI Technical Architecture and Engineering Matrix',
-          badge: 'Architecture & Tech Consulting',
+          image: 'assets/images/software/visionaria-potencial-digital.png',
+          alt: 'Francesc Sandalinas and Isabel at Potencial Digital Congress with VisionarIA',
+          badge: 'Potencial Digital Congress',
           title: 'Artificial Intelligence Strategy & Deployment',
-          subtitle: 'Strategic Collaboration & VisionarIA Ecosystem',
-          desc: 'Design and deployment of enterprise applied AI technical architectures. From data ingestion and vector databases to multi-agent orchestration and real-time inference, connecting high-impact AI solutions with enterprise needs under strict confidentiality protocols (NDA).',
-          tags: ['AI Strategy', 'Multi-Agent Systems', 'Vector Databases', 'Governance & NDA']
+          subtitle: 'Strategic Collaboration with VisionarIA',
+          desc: 'Active participation in the applied artificial intelligence ecosystem alongside VisionarIA. Exploring the intersection between software engineering, business strategy, and tech adoption at leading summits such as Potencial Digital, connecting high-impact AI tools with real-world enterprise needs.',
+          tags: ['AI Strategy', 'Tech Adoption', 'Tech Summits', 'Networking & Alliances']
         }
       },
     },
