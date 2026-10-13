@@ -105,14 +105,18 @@ const Renderer = {
    * Genera la sección de DISEÑO.
    */
   designSection(data) {
-    const cards = data.items.map(item => `
-      <article class="design-card animate-on-scroll">
-        <img data-src="${item.image}" alt="${item.alt}" class="lazy" loading="lazy" data-lightbox>
-        <div class="design-card__info">
-          <h3 class="design-card__name">${item.name}</h3>
-          <p class="design-card__desc">${item.desc}</p>
-        </div>
-      </article>`).join('');
+    const cards = data.items.map(item => {
+      const tagsHtml = (item.tags || []).map(t => `<span class="project-tag">${t}</span>`).join('');
+      return `
+        <article class="design-card animate-on-scroll">
+          <img data-src="${item.image}" alt="${item.alt}" class="lazy" loading="lazy" data-lightbox>
+          <div class="design-card__info">
+            <h3 class="design-card__name">${item.name}</h3>
+            <p class="design-card__desc">${item.desc}</p>
+            ${tagsHtml ? `<div class="project-tags">${tagsHtml}</div>` : ''}
+          </div>
+        </article>`;
+    }).join('');
 
     let massProdHtml = '';
     if (data.massProduction) {
@@ -125,14 +129,49 @@ const Renderer = {
           </div>
         </article>`).join('');
 
+      let featuredHtml = '';
+      if (mp.featured) {
+        const feat = mp.featured;
+        const tagsHtml = (feat.tags || []).map(t => `<span class="project-tag">${t}</span>`).join('');
+        const highlightsHtml = (feat.highlights || []).map(h => `
+          <div class="naval-highlight">
+            <h4 class="naval-highlight__title">${h.title}</h4>
+            <p class="naval-highlight__text">${h.text}</p>
+          </div>`).join('');
+
+        featuredHtml = `
+          <div class="naval-showcase animate-on-scroll">
+            <div class="naval-showcase__media">
+              <img data-src="${feat.image}" alt="${feat.alt}" class="lazy" loading="lazy" data-lightbox>
+              ${feat.badge ? `<span class="naval-showcase__badge">${feat.badge}</span>` : ''}
+            </div>
+            <div class="naval-showcase__body">
+              <h3 class="naval-showcase__title">${feat.title}</h3>
+              <p class="naval-showcase__desc">${feat.desc}</p>
+              ${tagsHtml ? `<div class="project-tags" style="margin-bottom: 2rem;">${tagsHtml}</div>` : ''}
+              <div class="naval-showcase__highlights">
+                ${highlightsHtml}
+              </div>
+            </div>
+          </div>`;
+      }
+
+      const subheadLabel = (typeof currentLang !== 'undefined' && currentLang === 'en')
+        ? 'Components & Manufacturing Systems'
+        : 'Sistemas de Fabricación & Componentes';
+
       massProdHtml = `
         <div class="mass-production-section animate-on-scroll" style="margin-top: 5rem;">
           <div class="section-header">
-            <span class="section-header__label">Ingeniería & Industria</span>
+            <span class="section-header__label">${(typeof currentLang !== 'undefined' && currentLang === 'en') ? 'Engineering & Industry' : 'Ingeniería & Industria'}</span>
             <h2 class="section-header__title">${mp.title}</h2>
           </div>
           <p class="mass-production__desc">${mp.desc}</p>
-          <div class="design-grid" style="margin-top: 2rem;">${mpImages}</div>
+          ${featuredHtml}
+          <div class="mass-production__subhead" style="margin-top: 3.5rem; margin-bottom: 1.25rem;">
+            <span class="section-header__label">${subheadLabel}</span>
+          </div>
+          <div class="design-grid">${mpImages}</div>
         </div>`;
     }
 
@@ -160,39 +199,89 @@ const Renderer = {
         <img data-src="${s.src}" alt="${s.alt}" class="lazy" loading="lazy">
       </div>`).join('');
 
+    let ecosystemHtml = '';
+    if (data.ecosystem) {
+      const eco = data.ecosystem;
+      const c = eco.card;
+      const tagsHtml = (c.tags || []).map(t => `<span class="ai-showcase__tag">${t}</span>`).join('');
+
+      ecosystemHtml = `
+        <div class="ai-ecosystem-section animate-on-scroll">
+          <div class="section-header">
+            <span class="section-header__label">${eco.sectionLabel}</span>
+            <h2 class="section-header__title">${eco.sectionTitle}</h2>
+          </div>
+          <div class="ai-showcase animate-on-scroll">
+            <div class="ai-showcase__media">
+              <img data-src="${c.image}" alt="${c.alt}" class="lazy" loading="lazy" data-lightbox>
+              ${c.badge ? `<span class="ai-showcase__badge">${c.badge}</span>` : ''}
+            </div>
+            <div class="ai-showcase__body">
+              <span class="ai-showcase__subtitle">${c.subtitle}</span>
+              <h3 class="ai-showcase__title">${c.title}</h3>
+              <p class="ai-showcase__desc">${c.desc}</p>
+              <div class="ai-showcase__tags">${tagsHtml}</div>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    const problemLabel = (typeof currentLang !== 'undefined' && currentLang === 'en') ? 'The Problem' : 'El Problema';
+    const solutionLabel = (typeof currentLang !== 'undefined' && currentLang === 'en') ? 'The Solution' : 'La Solución';
+    const productySubheadLabel = (typeof currentLang !== 'undefined' && currentLang === 'en') ? 'Proprietary Software' : 'Software Propio';
+    const productyTitleLabel = (typeof currentLang !== 'undefined' && currentLang === 'en') ? 'Producty — AI Habit & Goal App' : 'Producty — App con Inteligencia Artificial';
+
     return `
       <section id="detail-software" class="detail__section" aria-label="Software">
-        ${this.detailHero({ ...data.hero, category: 'Ingeniería de Software' })}
+        ${this.detailHero({ ...data.hero, category: (typeof currentLang !== 'undefined' && currentLang === 'en') ? 'Software & AI' : 'Software & IA' })}
         <div class="detail__content">
-          <div class="software-hero animate-on-scroll">
-            <div class="software-hero__icon">
-              <img src="${data.appIcon}" alt="Icono de ${data.appName}" loading="lazy">
+          ${ecosystemHtml}
+          <div class="producty-section animate-on-scroll" style="margin-top: 5rem;">
+            <div class="section-header animate-on-scroll" style="margin-bottom: 2rem;">
+              <span class="section-header__label">${productySubheadLabel}</span>
+              <h2 class="section-header__title">${productyTitleLabel}</h2>
             </div>
-            <div class="software-hero__text">
-              <h2>${data.appName}</h2>
-              <p class="software-hero__tagline">${data.tagline}</p>
+            <div class="software-hero animate-on-scroll">
+              <div class="software-hero__icon">
+                <img src="${data.appIcon}" alt="Icono de ${data.appName}" loading="lazy">
+              </div>
+              <div class="software-hero__text">
+                <h2>${data.appName}</h2>
+                <p class="software-hero__tagline">${data.tagline}</p>
+                ${data.tags ? `<div class="project-tags" style="margin-top: 0.75rem;">${data.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}</div>` : ''}
+              </div>
             </div>
-          </div>
-          <div class="software-problem-solution">
-            <div class="software-problem animate-on-scroll">
-              <h3>🔴 El Problema</h3>
-              <p>${data.problem}</p>
+            <div class="software-problem-solution">
+              <div class="software-problem animate-on-scroll">
+                <h3>🔴 ${problemLabel}</h3>
+                <p>${data.problem}</p>
+              </div>
+              <div class="software-solution animate-on-scroll">
+                <h3>🟢 ${solutionLabel}</h3>
+                <p>${data.solution}</p>
+              </div>
             </div>
-            <div class="software-solution animate-on-scroll">
-              <h3>🟢 La Solución</h3>
-              <p>${data.solution}</p>
+            <div class="section-header animate-on-scroll">
+              <span class="section-header__label">${(typeof currentLang !== 'undefined' && currentLang === 'en') ? 'The App' : 'La App'}</span>
+              <h2 class="section-header__title">${(typeof currentLang !== 'undefined' && currentLang === 'en') ? 'Screenshots' : 'Capturas de Pantalla'}</h2>
             </div>
-          </div>
-          <div class="section-header animate-on-scroll">
-            <span class="section-header__label">La App</span>
-            <h2 class="section-header__title">Capturas de Pantalla</h2>
-          </div>
-          <div class="software-screenshots" role="region" aria-label="Capturas de pantalla">${screenshots}</div>
-          <div class="software-cta-container animate-on-scroll">
-            <a href="${data.playStoreUrl}" target="_blank" rel="noopener noreferrer" class="software-cta">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
-              ${data.playStoreText}
-            </a>
+            <div class="software-screenshots" role="region" aria-label="Capturas de pantalla">${screenshots}</div>
+            <div class="software-cta-container animate-on-scroll">
+              ${data.betaBadge ? `
+                <div class="software-beta-badge">
+                  <span class="software-beta-dot"></span>
+                  <span>${data.betaBadge}</span>
+                </div>` : ''}
+              <button class="software-cta" data-open-modal aria-label="${data.playStoreText}">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M10 2v7.31L4.76 18.2A2 2 0 0 0 6.5 21h11a2 2 0 0 0 1.74-2.8L14 9.31V2"/>
+                  <path d="M8.5 2h7"/>
+                  <path d="M7 16h10"/>
+                </svg>
+                <span>${data.playStoreText}</span>
+              </button>
+              ${data.betaSubtext ? `<p class="software-beta-subtext">${data.betaSubtext}</p>` : ''}
+            </div>
           </div>
         </div>
       </section>`;
@@ -276,6 +365,92 @@ const Renderer = {
   },
 
   /**
+   * Genera el cuestionario y tarjeta de contacto completo.
+   */
+  contactForm(prefix = 'banner') {
+    const f = (typeof CONFIG !== 'undefined' && CONFIG.contactForm) ? CONFIG.contactForm : (DICTIONARY.es.contactForm || {});
+    const email = (typeof CONFIG !== 'undefined' && CONFIG.contactEmail) ? CONFIG.contactEmail : 'azdisseny.sl@gmail.com';
+
+    const areas = f.areas || [
+      { id: "design", label: "⚙️ Diseño Industrial & CAD 3D", value: "Diseño Industrial & Fabricación (CAD 3D / CNC / Serie)" },
+      { id: "software", label: "🤖 Software & Inteligencia Artificial", value: "Software & Inteligencia Artificial" },
+      { id: "art", label: "🎨 Arte & Encargos Visuales", value: "Arte & Expresión Visual" },
+      { id: "consulting", label: "💡 Consultoría Técnica / Otro Reto", value: "Consultoría Técnica / Otro Reto" }
+    ];
+
+    const areasHtml = areas.map((area, idx) => `
+      <label class="form-chip ${idx === 0 ? 'active' : ''}">
+        <input type="radio" name="project_area" value="${area.value}" ${idx === 0 ? 'checked' : ''}>
+        <span>${area.label}</span>
+      </label>
+    `).join('');
+
+    return `
+      <div class="contact-card">
+        <div class="contact-card__header">
+          <span class="contact-card__badge">${f.badge}</span>
+          <h2 class="contact-card__title">${f.title}</h2>
+          <p class="contact-card__subtitle">${f.subtitle}</p>
+        </div>
+
+        <form class="contact-form" data-form-prefix="${prefix}">
+          <div class="contact-form__row">
+            <div class="contact-form__group">
+              <label for="${prefix}-name" class="contact-form__label">${f.nameLabel} <span class="required-star">*</span></label>
+              <input type="text" id="${prefix}-name" name="name" required class="contact-form__input" placeholder="${f.namePlaceholder}">
+            </div>
+            <div class="contact-form__group">
+              <label for="${prefix}-email" class="contact-form__label">${f.emailLabel} <span class="required-star">*</span></label>
+              <input type="email" id="${prefix}-email" name="email" required class="contact-form__input" placeholder="${f.emailPlaceholder}">
+            </div>
+          </div>
+
+          <div class="contact-form__group">
+            <label for="${prefix}-phone" class="contact-form__label">${f.phoneLabel}</label>
+            <input type="tel" id="${prefix}-phone" name="phone" class="contact-form__input" placeholder="${f.phonePlaceholder}">
+          </div>
+
+          <div class="contact-form__group">
+            <span class="contact-form__label">${f.areaLabel}</span>
+            <div class="form-chips">
+              ${areasHtml}
+            </div>
+          </div>
+
+          <div class="contact-form__group">
+            <label for="${prefix}-message" class="contact-form__label">${f.messageLabel} <span class="required-star">*</span></label>
+            <textarea id="${prefix}-message" name="message" rows="4" required class="contact-form__textarea" placeholder="${f.messagePlaceholder}"></textarea>
+          </div>
+
+          <div class="contact-form__actions">
+            <button type="submit" class="contact-form__submit-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+              <span class="btn-text">${f.submitBtn}</span>
+            </button>
+          </div>
+
+          <div class="contact-form__status" role="status" aria-live="polite"></div>
+
+          <div class="contact-form__direct">
+            <span>${f.directEmailNotice}</span>
+            <a href="mailto:${email}?subject=Propuesta%20de%20Proyecto%20-%20AZ%20DISSENY" class="contact-form__email-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <span>${email}</span>
+            </a>
+            <button type="button" class="contact-form__copy-btn" data-copy-email="${email}" title="${f.copyEmailBtn}">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span class="copy-text">${f.copyEmailBtn}</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    `;
+  },
+
+  /**
    * Renderiza TODA la página desde CONFIG.
    * Se llama una sola vez al arrancar la app.
    */
@@ -287,7 +462,6 @@ const Renderer = {
     document.getElementById('slider-track').innerHTML = slidesHtml;
 
     // 2. Renderizar secciones de detalle
-    
     const detailContainer = document.getElementById('detail-sections');
     detailContainer.innerHTML = [
       c.design   ? this.designSection(c.design)              : '',
@@ -296,12 +470,20 @@ const Renderer = {
       c.art      ? this.artSection(c.art)                     : '',
     ].join('');
     
-    const ctaTitle = c.contactCta || '¿Tienes un reto de ingeniería?';
-    const ctaBtn = c.contactCtaBtn || 'Iniciar Proyecto';
-    const ctaHtml = `<div class="detail__contact-cta"><h3>${ctaTitle}</h3><button>${ctaBtn}</button></div>`;
+    // Inyectar cuestionario y banner de contacto en cada sección de detalle
     document.querySelectorAll('.detail__section').forEach(sec => {
-       sec.insertAdjacentHTML('beforeend', ctaHtml);
+       const bannerHtml = `
+         <div class="detail__contact-cta animate-on-scroll">
+           ${this.contactForm('detail-' + sec.id)}
+         </div>`;
+       sec.insertAdjacentHTML('beforeend', bannerHtml);
     });
+
+    // Inyectar cuestionario en el modal de cabecera
+    const modalFormEl = document.getElementById('modal-form-container');
+    if (modalFormEl) {
+      modalFormEl.innerHTML = this.contactForm('modal');
+    }
     
     const headerBtn = document.getElementById('header-contact-btn');
     if (headerBtn) headerBtn.textContent = c.contactBtn || 'Trabaja conmigo';
@@ -510,7 +692,7 @@ const Transitions = {
       LazyLoader.init();
     Modal.init();
       Animations.init();
-      if (sectionId === 'art') Lightbox.init();
+      if (sectionId === 'art' || sectionId === 'design' || sectionId === 'software') Lightbox.init();
 
       // Reproducir vídeo hero si es filosofía
       if (sectionId === 'philosophy') {
@@ -682,6 +864,12 @@ const Animations = {
    7. KEYBOARD HANDLER
    ================================================ */
 function handleKeyboard(e) {
+  if (Modal.isOpen) {
+    if (e.key === 'Escape') {
+      Modal.close();
+      return;
+    }
+  }
   if (Lightbox.isOpen) {
     if (e.key === 'Escape')    Lightbox.close();
     if (e.key === 'ArrowLeft') Lightbox.prev();
@@ -711,13 +899,13 @@ const Modal = {
     this.closeBtn = document.getElementById('modal-close');
     this.overlay = document.getElementById('modal-overlay');
     this.headerBtn = document.getElementById('header-contact-btn');
-    
+
     if (this.headerBtn) this.headerBtn.addEventListener('click', () => this.open());
     if (this.closeBtn) this.closeBtn.addEventListener('click', () => this.close());
     if (this.overlay) this.overlay.addEventListener('click', () => this.close());
-    
+
     document.addEventListener('click', (e) => {
-      if (e.target.closest('.detail__contact-cta button')) {
+      if (e.target.closest('[data-open-modal]')) {
         this.open();
       }
     });
@@ -726,11 +914,142 @@ const Modal = {
   open() {
     if (!this.modalEl) return;
     this.modalEl.classList.remove('hidden');
+    this.modalEl.setAttribute('aria-hidden', 'false');
   },
   
   close() {
     if (!this.modalEl) return;
     this.modalEl.classList.add('hidden');
+    this.modalEl.setAttribute('aria-hidden', 'true');
+  },
+
+  get isOpen() {
+    return this.modalEl && !this.modalEl.classList.contains('hidden');
+  }
+};
+
+
+/* ================================================
+   Y. CONTACT FORM (FormSubmit AJAX & Chips & Copy)
+   ================================================ */
+const ContactForm = {
+  init() {
+    // 1. Selector interactivo de áreas (chips)
+    document.addEventListener('change', (e) => {
+      if (e.target.name === 'project_area') {
+        const chipsContainer = e.target.closest('.form-chips');
+        if (chipsContainer) {
+          chipsContainer.querySelectorAll('.form-chip').forEach(c => c.classList.remove('active'));
+          const activeChip = e.target.closest('.form-chip');
+          if (activeChip) activeChip.classList.add('active');
+        }
+      }
+    });
+
+    // 2. Copiar correo al portapapeles con feedback
+    document.addEventListener('click', (e) => {
+      const copyBtn = e.target.closest('[data-copy-email]');
+      if (!copyBtn) return;
+      e.preventDefault();
+      const email = copyBtn.dataset.copyEmail || 'azdisseny.sl@gmail.com';
+      const label = copyBtn.querySelector('.copy-text');
+      const isEn = typeof currentLang !== 'undefined' && currentLang === 'en';
+      const copiedMsg = isEn ? 'Copied!' : '¡Copiado!';
+      const origMsg = isEn ? 'Copy email' : 'Copiar correo';
+
+      navigator.clipboard.writeText(email).then(() => {
+        if (label) label.textContent = copiedMsg;
+        copyBtn.classList.add('copied');
+        setTimeout(() => {
+          if (label) label.textContent = origMsg;
+          copyBtn.classList.remove('copied');
+        }, 2000);
+      }).catch(() => {});
+    });
+
+    // 3. Envío de formulario vía FormSubmit AJAX
+    document.addEventListener('submit', async (e) => {
+      const form = e.target.closest('.contact-form');
+      if (!form) return;
+      e.preventDefault();
+
+      const submitBtn = form.querySelector('.contact-form__submit-btn');
+      const btnText = submitBtn ? submitBtn.querySelector('.btn-text') : null;
+      const statusEl = form.querySelector('.contact-form__status');
+      
+      const isEn = typeof currentLang !== 'undefined' && currentLang === 'en';
+      const fData = (typeof CONFIG !== 'undefined' && CONFIG.contactForm) ? CONFIG.contactForm : null;
+      const origBtnText = btnText ? btnText.textContent : (isEn ? 'Send Proposal' : 'Enviar Propuesta');
+      const submittingText = fData?.submittingText || (isEn ? 'Sending proposal...' : 'Enviando propuesta...');
+      const successMsg = fData?.successMsg || (isEn ? '✓ Proposal sent successfully! I will reply to your email shortly.' : '✓ ¡Propuesta enviada con éxito! Te responderé en breve a tu correo.');
+      const errorMsg = fData?.errorMsg || (isEn ? 'There was an error sending. Write to azdisseny.sl@gmail.com' : 'Hubo un error al enviar. Puedes escribirme a azdisseny.sl@gmail.com');
+
+      const formData = new FormData(form);
+      const name = formData.get('name') || '';
+      const email = formData.get('email') || '';
+      const phone = formData.get('phone') || (isEn ? 'Not specified' : 'No especificado');
+      const area = formData.get('project_area') || (isEn ? 'General' : 'General');
+      const message = formData.get('message') || '';
+
+      const payload = {
+        nombre: name,
+        email: email,
+        telefono: phone,
+        area_colaboracion: area,
+        mensaje: message,
+        _subject: `Nueva Propuesta [${area}] de ${name} - AZ DISSENY`,
+        _template: 'table',
+        _captcha: 'false'
+      };
+
+      if (submitBtn) submitBtn.disabled = true;
+      if (btnText) btnText.textContent = submittingText;
+      if (statusEl) {
+        statusEl.className = 'contact-form__status pending';
+        statusEl.textContent = submittingText;
+        statusEl.style.display = 'block';
+      }
+
+      try {
+        const response = await fetch('https://formsubmit.co/ajax/azdisseny.sl@gmail.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+          if (statusEl) {
+            statusEl.className = 'contact-form__status success';
+            statusEl.textContent = successMsg;
+          }
+          form.reset();
+          const chips = form.querySelectorAll('.form-chip');
+          chips.forEach((c, idx) => c.classList.toggle('active', idx === 0));
+          if (chips[0]) {
+            const rad = chips[0].querySelector('input[type="radio"]');
+            if (rad) rad.checked = true;
+          }
+          if (btnText) btnText.textContent = isEn ? '✓ Sent' : '✓ Enviado';
+          setTimeout(() => {
+            if (submitBtn) submitBtn.disabled = false;
+            if (btnText) btnText.textContent = origBtnText;
+          }, 4000);
+        } else {
+          throw new Error('FormSubmit response not ok');
+        }
+      } catch (err) {
+        console.error('Contact Form submission error:', err);
+        if (statusEl) {
+          statusEl.className = 'contact-form__status error';
+          statusEl.textContent = errorMsg;
+        }
+        if (submitBtn) submitBtn.disabled = false;
+        if (btnText) btnText.textContent = origBtnText;
+      }
+    });
   }
 };
 
@@ -754,6 +1073,7 @@ const App = {
     Transitions.init();
     LazyLoader.init();
     Modal.init();
+    ContactForm.init();
 
     // 4. Teclado global
     document.addEventListener('keydown', handleKeyboard);
