@@ -21,3 +21,7 @@ dist/
 Thumbs.db
 .vscode/
 .idea/
+
+# Environment & Secrets
+.env
+.env.*

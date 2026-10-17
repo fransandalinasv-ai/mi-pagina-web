@@ -114,6 +114,14 @@ const Renderer = {
             <h3 class="design-card__name">${item.name}</h3>
             <p class="design-card__desc">${item.desc}</p>
             ${tagsHtml ? `<div class="project-tags">${tagsHtml}</div>` : ''}
+            ${item.buyUrl ? `
+              <div class="design-card__buy-action">
+                ${item.price ? `<span class="design-card__price">${item.price}</span>` : ''}
+                <a href="${item.buyUrl}" target="_blank" rel="noopener noreferrer" class="btn--buy" onclick="event.stopPropagation();">
+                  ${item.buyText || 'Comprar Ahora'}
+                </a>
+              </div>
+            ` : ''}
           </div>
         </article>`;
     }).join('');

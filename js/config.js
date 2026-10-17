@@ -89,8 +89,17 @@ const DICTIONARY = {
       sectionLabel: 'Proyectos',
       sectionTitle: 'Ingeniería de producto',
       items: [
-        { image: 'assets/images/design/bolet-lamp.jpg', alt: 'Bolet Lamp — Lámpara hecha con micelio', name: 'Bolet Lamp', desc: 'Lámpara hecha con micelio', tags: ['Biomateriales', 'Micelio', 'Diseño Orgánico'] },
-        { image: 'assets/images/design/firestone.png', alt: 'Firestone Lamp — Impresión 3D', name: 'Firestone Lamp', desc: 'Producción personal impresa en 3D. Consultar precio.', tags: ['Impresión 3D FDM', 'Fabricación Digital', 'Paramétrico'] },
+        { image: 'assets/images/design/bolet-lamp.jpg', alt: 'Bolet Lamp — Lámpara hecha con micelio', name: 'Bolet Lamp', desc: 'Lámpara de micelio orgánico (Pieza de exposición e I+D)', tags: ['Biomateriales', 'Micelio', 'Diseño Orgánico'] },
+        { 
+          image: 'assets/images/design/firestone.png', 
+          alt: 'Firestone Lamp — Impresión 3D', 
+          name: 'Firestone Lamp', 
+          desc: 'Producción artesanal impresa en 3D. Diseño orgánico de autor.', 
+          tags: ['Impresión 3D FDM', 'Fabricación Digital', 'Paramétrico'],
+          price: '90 €',
+          buyUrl: 'https://buy.stripe.com/test_5kQbJ18Bw1P0fBd5YIcwg00',
+          buyText: 'Comprar Lámpara — 90 €'
+        },
       ],
       massProduction: {
         title: 'Producción en Masa y Mecánica Avanzada',
@@ -260,8 +269,17 @@ const DICTIONARY = {
       sectionLabel: 'Projects',
       sectionTitle: 'Product Engineering',
       items: [
-        { image: 'assets/images/design/bolet-lamp.jpg', alt: 'Bolet Lamp — Mushroom mycelium lamp', name: 'Bolet Lamp', desc: 'Lamp made with mycelium', tags: ['Biomaterials', 'Mycelium', 'Organic Design'] },
-        { image: 'assets/images/design/firestone.png', alt: 'Firestone Lamp — 3D Printing', name: 'Firestone Lamp', desc: '3D printed lamp personal production. Ask for price.', tags: ['3D Printing FDM', 'Digital Fabrication', 'Parametric'] },
+        { image: 'assets/images/design/bolet-lamp.jpg', alt: 'Bolet Lamp — Mushroom mycelium lamp', name: 'Bolet Lamp', desc: 'Organic mushroom mycelium lamp (Exhibition & R&D piece)', tags: ['Biomaterials', 'Mycelium', 'Organic Design'] },
+        { 
+          image: 'assets/images/design/firestone.png', 
+          alt: 'Firestone Lamp — 3D Printing', 
+          name: 'Firestone Lamp', 
+          desc: 'Exclusive 3D printed lamp produced by A-Z Disseny SL.',
+          tags: ['3D Printing FDM', 'Digital Fabrication', 'Parametric'],
+          price: '90 €',
+          buyUrl: 'https://buy.stripe.com/test_5kQbJ18Bw1P0fBd5YIcwg00',
+          buyText: 'Buy Lamp — 90 €'
+        },
       ],
       massProduction: {
         title: 'Mass Production & Advanced Mechanics',
