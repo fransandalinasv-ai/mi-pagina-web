@@ -115,11 +115,17 @@ const Renderer = {
             <p class="design-card__desc">${item.desc}</p>
             ${tagsHtml ? `<div class="project-tags">${tagsHtml}</div>` : ''}
             ${item.buyUrl ? `
-              <div class="design-card__buy-action">
-                ${item.price ? `<span class="design-card__price">${item.price}</span>` : ''}
-                <a href="${item.buyUrl}" target="_blank" rel="noopener noreferrer" class="btn--buy" onclick="event.stopPropagation();">
-                  ${item.buyText || 'Comprar Ahora'}
-                </a>
+              <div class="design-card__buy-wrapper" onclick="event.stopPropagation();">
+                <div class="design-card__buy-action">
+                  ${item.price ? `<span class="design-card__price">${item.price}</span>` : ''}
+                  <a href="${item.buyUrl}" target="_blank" rel="noopener noreferrer" class="btn--buy">
+                    ${item.buyText || 'Comprar Ahora'}
+                  </a>
+                </div>
+                <div class="design-card__buy-legal">
+                  ${item.priceNote ? `<span class="design-card__price-note">${item.priceNote}</span>` : ''}
+                  ${item.termsLinkText ? `<button type="button" class="design-card__terms-link" data-open-legal="condiciones">${item.termsLinkText}</button>` : ''}
+                </div>
               </div>
             ` : ''}
           </div>
@@ -430,6 +436,18 @@ const Renderer = {
             <textarea id="${prefix}-message" name="message" rows="4" required class="contact-form__textarea" placeholder="${f.messagePlaceholder}"></textarea>
           </div>
 
+          <div class="contact-form__privacy">
+            <label class="contact-form__checkbox-label" for="${prefix}-privacy">
+              <input type="checkbox" id="${prefix}-privacy" name="privacy_accepted" required class="contact-form__checkbox">
+              <span class="contact-form__checkbox-text">
+                ${f.privacyPrefix || 'He leído y acepto la'}
+                <button type="button" class="contact-form__legal-link" data-open-legal="privacidad">${f.privacyLinkText || 'Política de Privacidad'}</button>
+                ${f.privacySuffix || ''}
+                <span class="required-star">*</span>
+              </span>
+            </label>
+          </div>
+
           <div class="contact-form__actions">
             <button type="submit" class="contact-form__submit-btn">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -441,6 +459,8 @@ const Renderer = {
           </div>
 
           <div class="contact-form__status" role="status" aria-live="polite"></div>
+
+          ${f.privacySummary ? `<div class="contact-form__privacy-summary">${f.privacySummary}</div>` : ''}
 
           <div class="contact-form__direct">
             <span>${f.directEmailNotice}</span>
@@ -454,6 +474,41 @@ const Renderer = {
             </button>
           </div>
         </form>
+      </div>
+    `;
+  },
+
+  /**
+   * Genera el contenido del modal legal con pestañas (Aviso Legal, Privacidad, Condiciones, Cookies).
+   */
+  legalModalContent(legal) {
+    if (!legal || !legal.tabs) return '';
+    const tabKeys = Object.keys(legal.tabs);
+
+    const tabsNav = tabKeys.map((key, idx) => `
+      <button type="button" class="legal-tab-btn ${idx === 0 ? 'active' : ''}" data-legal-tab="${key}" role="tab" aria-selected="${idx === 0 ? 'true' : 'false'}">
+        ${legal.tabs[key].label}
+      </button>
+    `).join('');
+
+    const tabsPanels = tabKeys.map((key, idx) => `
+      <div class="legal-tab-panel ${idx === 0 ? 'active' : ''}" id="legal-panel-${key}" role="tabpanel">
+        ${legal.tabs[key].content}
+      </div>
+    `).join('');
+
+    return `
+      <div class="legal-doc">
+        <div class="legal-doc__header">
+          <span class="contact-card__badge">${legal.badge || 'A-Z DISSENY, SL.'}</span>
+          <h2 class="legal-doc__title">${legal.title || 'Información Legal'}</h2>
+        </div>
+        <div class="legal-tabs" role="tablist">
+          ${tabsNav}
+        </div>
+        <div class="legal-panels">
+          ${tabsPanels}
+        </div>
       </div>
     `;
   },
@@ -492,6 +547,12 @@ const Renderer = {
     if (modalFormEl) {
       modalFormEl.innerHTML = this.contactForm('modal');
     }
+
+    // Inyectar contenido en el modal legal
+    const legalModalEl = document.getElementById('legal-modal-container');
+    if (legalModalEl && c.legal) {
+      legalModalEl.innerHTML = this.legalModalContent(c.legal);
+    }
     
     const headerBtn = document.getElementById('header-contact-btn');
     if (headerBtn) headerBtn.textContent = c.contactBtn || 'Trabaja conmigo';
@@ -501,15 +562,48 @@ const Renderer = {
     const logoEl = document.getElementById('brand-name');
     // if (logoEl) logoEl.textContent = c.brand.name;
 
-    // 4. Renderizar footer
+    // 4. Renderizar barra legal sutil en el slider principal
+    const sliderLegalEl = document.getElementById('slider-legal');
+    if (sliderLegalEl && c.legal && c.legal.links) {
+      const l = c.legal.links;
+      sliderLegalEl.innerHTML = `
+        <button type="button" class="slider__legal-link" data-open-legal="aviso">${l.aviso}</button>
+        <span class="slider__legal-sep">·</span>
+        <button type="button" class="slider__legal-link" data-open-legal="privacidad">${l.privacidad}</button>
+        <span class="slider__legal-sep">·</span>
+        <button type="button" class="slider__legal-link" data-open-legal="condiciones">${l.condiciones}</button>
+        <span class="slider__legal-sep">·</span>
+        <button type="button" class="slider__legal-link" data-open-legal="cookies">${l.cookies}</button>
+      `;
+    }
+
+    // 5. Renderizar footer completo con enlaces legales
     const footerEl = document.getElementById('footer-content');
     if (footerEl) {
+      const l = (c.legal && c.legal.links) ? c.legal.links : {
+        aviso: 'Aviso Legal',
+        privacidad: 'Política de Privacidad',
+        condiciones: 'Condiciones de Venta',
+        cookies: 'Política de Cookies'
+      };
+      const companyText = c.brand.company ? `${c.brand.company} · ` : '';
       footerEl.innerHTML = `
-        <span class="site-footer__brand">${c.brand.name}</span>
-        <span class="site-footer__separator">·</span>
-        <span class="site-footer__text">${c.brand.author} © ${c.brand.year}</span>
-        <span class="site-footer__separator">·</span>
-        <a href="${c.brand.youtubeUrl}" target="_blank" rel="noopener noreferrer" class="site-footer__link">YouTube</a>`;
+        <div class="site-footer__row">
+          <span class="site-footer__brand">${c.brand.name}</span>
+          <span class="site-footer__separator">·</span>
+          <span class="site-footer__text">${companyText}${c.brand.author} © ${c.brand.year}</span>
+          <span class="site-footer__separator">·</span>
+          <a href="${c.brand.youtubeUrl}" target="_blank" rel="noopener noreferrer" class="site-footer__link">YouTube</a>
+        </div>
+        <div class="site-footer__legal">
+          <button type="button" class="site-footer__legal-btn" data-open-legal="aviso">${l.aviso}</button>
+          <span class="site-footer__separator">·</span>
+          <button type="button" class="site-footer__legal-btn" data-open-legal="privacidad">${l.privacidad}</button>
+          <span class="site-footer__separator">·</span>
+          <button type="button" class="site-footer__legal-btn" data-open-legal="condiciones">${l.condiciones}</button>
+          <span class="site-footer__separator">·</span>
+          <button type="button" class="site-footer__legal-btn" data-open-legal="cookies">${l.cookies}</button>
+        </div>`;
     }
   },
 };
@@ -872,6 +966,12 @@ const Animations = {
    7. KEYBOARD HANDLER
    ================================================ */
 function handleKeyboard(e) {
+  if (LegalModal.isOpen) {
+    if (e.key === 'Escape') {
+      LegalModal.close();
+      return;
+    }
+  }
   if (Modal.isOpen) {
     if (e.key === 'Escape') {
       Modal.close();
@@ -902,11 +1002,15 @@ function handleKeyboard(e) {
    X. MODAL DE CONTACTO
    ================================================ */
 const Modal = {
+  _bound: false,
   init() {
     this.modalEl = document.getElementById('contact-modal');
     this.closeBtn = document.getElementById('modal-close');
     this.overlay = document.getElementById('modal-overlay');
     this.headerBtn = document.getElementById('header-contact-btn');
+
+    if (this._bound) return;
+    this._bound = true;
 
     if (this.headerBtn) this.headerBtn.addEventListener('click', () => this.open());
     if (this.closeBtn) this.closeBtn.addEventListener('click', () => this.close());
@@ -929,6 +1033,72 @@ const Modal = {
     if (!this.modalEl) return;
     this.modalEl.classList.add('hidden');
     this.modalEl.setAttribute('aria-hidden', 'true');
+  },
+
+  get isOpen() {
+    return this.modalEl && !this.modalEl.classList.contains('hidden');
+  }
+};
+
+
+/* ================================================
+   X2. MODAL LEGAL (Aviso Legal, Privacidad, Condiciones, Cookies)
+   ================================================ */
+const LegalModal = {
+  _bound: false,
+  init() {
+    this.modalEl = document.getElementById('legal-modal');
+    this.closeBtn = document.getElementById('legal-modal-close');
+    this.overlay = document.getElementById('legal-modal-overlay');
+
+    if (this._bound) return;
+    this._bound = true;
+
+    if (this.closeBtn) this.closeBtn.addEventListener('click', () => this.close());
+    if (this.overlay) this.overlay.addEventListener('click', () => this.close());
+
+    document.addEventListener('click', (e) => {
+      const openTrigger = e.target.closest('[data-open-legal]');
+      if (openTrigger) {
+        e.preventDefault();
+        const tabKey = openTrigger.dataset.openLegal || 'aviso';
+        this.open(tabKey);
+        return;
+      }
+
+      const tabBtn = e.target.closest('[data-legal-tab]');
+      if (tabBtn) {
+        e.preventDefault();
+        this.switchTab(tabBtn.dataset.legalTab);
+      }
+    });
+  },
+
+  open(tabKey = 'aviso') {
+    if (!this.modalEl) return;
+    this.switchTab(tabKey);
+    this.modalEl.classList.remove('hidden');
+    this.modalEl.setAttribute('aria-hidden', 'false');
+  },
+
+  close() {
+    if (!this.modalEl) return;
+    this.modalEl.classList.add('hidden');
+    this.modalEl.setAttribute('aria-hidden', 'true');
+  },
+
+  switchTab(tabKey) {
+    if (!this.modalEl) return;
+    this.modalEl.querySelectorAll('[data-legal-tab]').forEach(btn => {
+      const isActive = btn.dataset.legalTab === tabKey;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+    this.modalEl.querySelectorAll('.legal-tab-panel').forEach(panel => {
+      panel.classList.toggle('active', panel.id === `legal-panel-${tabKey}`);
+    });
+    const contentBox = this.modalEl.querySelector('.modal__content--legal');
+    if (contentBox) contentBox.scrollTop = 0;
   },
 
   get isOpen() {
@@ -1005,6 +1175,7 @@ const ContactForm = {
         telefono: phone,
         area_colaboracion: area,
         mensaje: message,
+        consentimiento_rgpd: isEn ? 'Accepted (Privacy Policy - A-Z DISSENY, SL.)' : 'Aceptado (Política de Privacidad - A-Z DISSENY, SL.)',
         _subject: `Nueva Propuesta [${area}] de ${name} - AZ DISSENY`,
         _template: 'table',
         _captcha: 'false'
@@ -1081,6 +1252,7 @@ const App = {
     Transitions.init();
     LazyLoader.init();
     Modal.init();
+    LegalModal.init();
     ContactForm.init();
 
     // 4. Teclado global

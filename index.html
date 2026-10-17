@@ -15,7 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Estilos -->
-  <link rel="stylesheet" href="css/style.css?v=3">
+  <link rel="stylesheet" href="css/style.css?v=4">
 
   <!-- Favicon -->
   <link rel="icon" href="assets/images/branding/sanda-icon.png" type="image/png">
@@ -62,6 +62,8 @@
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
       </button>
     </nav>
+
+    <div id="slider-legal" class="slider__legal" aria-label="Enlaces legales"></div>
   </div>
 
 
@@ -115,6 +117,21 @@
 
 
   <!-- ============================================
+       MODAL LEGAL (LSSI-CE / RGPD / TRLGDCU / COOKIES)
+       ============================================ -->
+  <div id="legal-modal" class="modal modal--legal hidden" role="dialog" aria-label="Información Legal y Privacidad" aria-hidden="true">
+    <div class="modal__overlay" id="legal-modal-overlay"></div>
+    <div class="modal__content modal__content--legal">
+      <button id="legal-modal-close" class="modal__close" aria-label="Cerrar ventana legal">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+
+      <div id="legal-modal-container"></div>
+    </div>
+  </div>
+
+
+  <!-- ============================================
        FOOTER — Generado desde config.js
        ============================================ -->
   <footer class="site-footer" aria-label="Pie de página">
@@ -128,10 +145,8 @@
        SCRIPTS — Orden importante:
        1. config.js (datos) se carga ANTES que main.js (lógica)
        ============================================ -->
-  <!-- Script de Tally (necesario si incrustas su iframe dinámico) -->
-  <script async src="https://tally.so/widgets/embed.js"></script>
-  <script src="js/config.js?v=3"></script>
-  <script src="js/main.js?v=3"></script>
+  <script src="js/config.js?v=4"></script>
+  <script src="js/main.js?v=4"></script>
 
 </body>
 </html>

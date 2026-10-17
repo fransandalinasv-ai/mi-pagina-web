@@ -2502,3 +2502,315 @@ video.slide__video-bg {
     text-align: center;
   }
 }
+
+/* ================================================
+   CUMPLIMIENTO LEGAL (MODAL LEGAL, RGPD, E-COMMERCE, FOOTER)
+   ================================================ */
+
+/* 1. Barra legal sutil en el Slider Fullscreen */
+.slider__legal {
+  position: absolute;
+  bottom: 1.1rem;
+  right: 2rem;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.slider__legal-link {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.45);
+  background: none;
+  border: none;
+  padding: 0.15rem 0.25rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  letter-spacing: 0.02em;
+}
+
+.slider__legal-link:hover {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: underline;
+}
+
+.slider__legal-sep {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.25);
+  user-select: none;
+}
+
+/* 2. Footer Legal estructurado en dos filas */
+.site-footer__content {
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.site-footer__row,
+.site-footer__legal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.site-footer__legal-btn {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.15rem 0.25rem;
+  transition: color 0.2s ease;
+}
+
+.site-footer__legal-btn:hover {
+  color: var(--text-primary);
+  text-decoration: underline;
+}
+
+/* 3. Ficha E-Commerce (Firestone Lamp) — Impuestos y Condiciones */
+.design-card__buy-wrapper {
+  margin-top: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.design-card__buy-Wrapper .design-card__buy-action,
+.design-card__buy-wrapper .design-card__buy-action {
+  margin-top: 0;
+}
+
+.design-card__buy-legal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  align-items: flex-start;
+}
+
+.design-card__price-note {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.design-card__terms-link {
+  font-size: 0.72rem;
+  color: #38bdf8;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-align: left;
+  transition: color 0.2s ease;
+}
+
+.design-card__terms-link:hover {
+  color: #7dd3fc;
+}
+
+/* 4. Casilla RGPD y Primera Capa Informativa en Formularios */
+.contact-form__privacy {
+  margin-top: 0.25rem;
+}
+
+.contact-form__checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  cursor: pointer;
+  font-size: 0.84rem;
+  color: #d4d4d8;
+  line-height: 1.45;
+  user-select: none;
+}
+
+.contact-form__checkbox {
+  margin-top: 0.2rem;
+  width: 16px;
+  height: 16px;
+  accent-color: #38bdf8;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.contact-form__legal-link {
+  color: #38bdf8;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+  display: inline;
+}
+
+.contact-form__legal-link:hover {
+  color: #7dd3fc;
+}
+
+.contact-form__privacy-summary {
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: #71717a;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 0.75rem 0.9rem;
+  text-align: left;
+}
+
+.contact-form__privacy-summary strong {
+  color: #a1a1aa;
+  font-weight: 600;
+}
+
+.contact-form__privacy-summary a {
+  color: #38bdf8;
+  text-decoration: underline;
+}
+
+/* 5. Modal Legal con Pestañas */
+.modal--legal {
+  z-index: 1100;
+}
+
+.modal__content--legal {
+  max-width: 820px;
+  max-height: 88vh;
+  padding: 2.5rem 2.25rem 2.25rem;
+}
+
+.legal-doc__header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.legal-doc__title {
+  font-size: 1.65rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+.legal-tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.legal-tab-btn {
+  padding: 0.55rem 1rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #a1a1aa;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.legal-tab-btn:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.legal-tab-btn.active {
+  background: rgba(56, 189, 248, 0.14);
+  border-color: #38bdf8;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.legal-tab-panel {
+  display: none;
+  text-align: left;
+  color: #d4d4d8;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.legal-tab-panel.active {
+  display: block;
+}
+
+.legal-tab-panel h3 {
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.legal-tab-panel h3:first-child {
+  margin-top: 0;
+}
+
+.legal-tab-panel p {
+  margin-bottom: 0.85rem;
+  color: #a1a1aa;
+}
+
+.legal-tab-panel ul {
+  list-style: disc;
+  padding-left: 1.35rem;
+  margin-bottom: 1rem;
+  color: #a1a1aa;
+}
+
+.legal-tab-panel li {
+  margin-bottom: 0.4rem;
+}
+
+.legal-tab-panel strong {
+  color: #e4e4e7;
+}
+
+.legal-tab-panel a {
+  color: #38bdf8;
+  text-decoration: underline;
+}
+
+.legal-tab-panel code {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  color: #e4e4e7;
+}
+
+@media screen and (max-width: 768px) {
+  .slider__legal {
+    right: 0;
+    left: 0;
+    bottom: 0.65rem;
+    justify-content: center;
+    padding: 0 1rem;
+  }
+  .slider__legal-link {
+    font-size: 0.65rem;
+  }
+  .modal__content--legal {
+    padding: 2.25rem 1.15rem 1.5rem;
+  }
+  .legal-doc__title {
+    font-size: 1.35rem;
+  }
+  .legal-tab-btn {
+    font-size: 0.76rem;
+    padding: 0.45rem 0.75rem;
+  }
+}
