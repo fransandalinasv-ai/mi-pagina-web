@@ -64,9 +64,9 @@ const DICTIONARY = {
       {
         id: 'software',
         category: 'Software & Inteligencia Artificial',
-        title: 'Ingeniería, código<br>y estrategia de IA.',
+        title: 'Producty — simplifica<br>tus objetivos.',
         ctaText: 'Explora Software & IA',
-        background: { type: 'image', src: 'assets/images/software/visionaria-potencial-digital.png', alt: 'Francesc Sandalinas e Isabel en el Congreso Potencial Digital' },
+        background: { type: 'product', src: 'assets/images/software/producty-mockup-1.png', alt: 'Producty App - Mockup' },
       },
       {
         id: 'philosophy',
@@ -127,7 +127,7 @@ const DICTIONARY = {
       },
     },
     software: {
-      hero: { type: 'image', src: 'assets/images/software/visionaria-potencial-digital.png', alt: 'Francesc Sandalinas e Isabel en el Congreso Potencial Digital con VisionarIA', title: 'Software & Inteligencia Artificial', subtitle: 'Ecosistema de IA aplicada, eventos tecnológicos y desarrollo de producto digital.' },
+      hero: { type: 'product', src: 'assets/images/software/producty-mockup-1.png', alt: 'Producty App Mockup', title: 'Producty', subtitle: 'La app que simplifica tus objetivos complejos con inteligencia artificial.' },
       appIcon: 'assets/images/software/producty-icon.jpeg',
       appName: 'Producty',
       tagline: 'Simplifica. Ejecuta. Avanza.',
@@ -148,12 +148,12 @@ const DICTIONARY = {
         sectionTitle: 'VisionarIA & Inteligencia Artificial',
         card: {
           image: 'assets/images/software/visionaria-potencial-digital.png',
-          alt: 'Francesc Sandalinas e Isabel en el Congreso Potencial Digital con VisionarIA',
-          badge: 'Congreso Potencial Digital',
+          alt: 'Francesc Sandalinas e Isabel con VisionarIA',
+          badge: 'Ecosistema & Alianzas B2B',
           title: 'Estrategia & Despliegue de Inteligencia Artificial',
           subtitle: 'Colaboración Estratégica con VisionarIA',
-          desc: 'Participación activa en el ecosistema de inteligencia artificial aplicada junto a VisionarIA. Explorando la intersección entre ingeniería de software, estrategia de negocio y adopción tecnológica en eventos de referencia como Potencial Digital, conectando herramientas de IA con necesidades empresariales de alto impacto.',
-          tags: ['Estrategia de IA', 'Adopción Tecnológica', 'Congresos Tech', 'Networking & Alianzas']
+          desc: 'Participación activa en el ecosistema de inteligencia artificial aplicada junto a VisionarIA. Explorando la intersección entre ingeniería de software, comunicación estratégica y validación de betas B2B, facilitando la adopción temprana de soluciones de IA en entornos corporativos.',
+          tags: ['Estrategia de IA', 'Comunicación Tech', 'Betas B2B', 'Adopción Tecnológica']
         }
       },
     },
@@ -244,9 +244,9 @@ const DICTIONARY = {
       {
         id: 'software',
         category: 'Software & Artificial Intelligence',
-        title: 'Engineering, code<br>& AI strategy.',
+        title: 'Producty — simplify<br>your goals.',
         ctaText: 'Explore Software & AI',
-        background: { type: 'image', src: 'assets/images/software/visionaria-potencial-digital.png', alt: 'Francesc Sandalinas and Isabel at Potencial Digital Congress' },
+        background: { type: 'product', src: 'assets/images/software/producty-mockup-1.png', alt: 'Producty App - Mockup' },
       },
       {
         id: 'philosophy',
@@ -307,7 +307,7 @@ const DICTIONARY = {
       },
     },
     software: {
-      hero: { type: 'image', src: 'assets/images/software/visionaria-potencial-digital.png', alt: 'Francesc Sandalinas and Isabel at Potencial Digital Congress with VisionarIA', title: 'Software & Artificial Intelligence', subtitle: 'Applied AI ecosystem, tech summits and digital product engineering.' },
+      hero: { type: 'product', src: 'assets/images/software/producty-mockup-1.png', alt: 'Producty App Mockup', title: 'Producty', subtitle: 'The app that simplifies your complex goals with artificial intelligence.' },
       appIcon: 'assets/images/software/producty-icon.jpeg',
       appName: 'Producty',
       tagline: 'Simplify. Execute. Advance.',
@@ -328,12 +328,12 @@ const DICTIONARY = {
         sectionTitle: 'VisionarIA & Applied AI',
         card: {
           image: 'assets/images/software/visionaria-potencial-digital.png',
-          alt: 'Francesc Sandalinas and Isabel at Potencial Digital Congress with VisionarIA',
-          badge: 'Potencial Digital Congress',
+          alt: 'Francesc Sandalinas and Isabel with VisionarIA',
+          badge: 'Ecosystem & B2B Alliances',
           title: 'Artificial Intelligence Strategy & Deployment',
           subtitle: 'Strategic Collaboration with VisionarIA',
-          desc: 'Active participation in the applied artificial intelligence ecosystem alongside VisionarIA. Exploring the intersection between software engineering, business strategy, and tech adoption at leading summits such as Potencial Digital, connecting high-impact AI tools with real-world enterprise needs.',
-          tags: ['AI Strategy', 'Tech Adoption', 'Tech Summits', 'Networking & Alliances']
+          desc: 'Active participation in the applied artificial intelligence ecosystem alongside VisionarIA. Exploring the intersection between software engineering, strategic communication, and B2B beta validation, facilitating the early adoption of AI solutions in corporate environments.',
+          tags: ['AI Strategy', 'Tech Communication', 'B2B Betas', 'Tech Adoption']
         }
       },
     },
