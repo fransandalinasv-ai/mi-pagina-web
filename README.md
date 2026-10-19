@@ -1,6 +1,6 @@
-# SANDA — Ingeniero Artista | Portfolio One Page
+# AZ disseny | Portfolio One Page
 
-> Portfolio web personal de **Francesc Sandalinas** (SANDA).  
+> Portfolio web de **A-Z DISSENY** / **Francesc Sandalinas**.  
 > Dark mode · Minimalista · Tesla-inspired.
 
 ---
