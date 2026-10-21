@@ -12,6 +12,7 @@ __pycache__/
 
 # Build outputs
 dist/
+dist_web/
 .astro/
 **/dist/
 **/.astro/
