@@ -69,9 +69,9 @@ const DICTIONARY = {
       {
         id: 'software',
         category: 'Software & Inteligencia Artificial',
-        title: 'Apps de Autor — Producty,<br>Matinium & Friction.',
+        title: 'Apps de Autor — Matinium,<br>Friction & Producty.',
         ctaText: 'Explora Software & Apps',
-        background: { type: 'product', src: 'assets/images/software/producty-mockup-1.png', alt: 'Producty App - Mockup' },
+        background: { type: 'product', src: 'assets/images/software/matinium-shot-01.png', alt: 'Matinium & Apps de Autor' },
       },
       {
         id: 'philosophy',
@@ -134,27 +134,8 @@ const DICTIONARY = {
       },
     },
     software: {
-      hero: { type: 'product', src: 'assets/images/software/producty-mockup-1.png', alt: 'Apps de Autor & Software', title: 'Apps de Autor', subtitle: 'Sistemas digitales y aplicaciones móviles diseñadas para la claridad, la soberanía de la atención y la ejecución de metas.' },
+      hero: { type: 'product', src: 'assets/images/software/matinium-shot-01.png', alt: 'Apps de Autor & Software', title: 'Apps de Autor', subtitle: 'Sistemas digitales y aplicaciones móviles diseñadas para la claridad, la soberanía de la atención y la ejecución de metas.' },
       apps: [
-        {
-          id: 'producty',
-          subhead: 'Inteligencia Artificial & Metas',
-          appName: 'Producty',
-          appIcon: 'assets/images/software/producty-icon.jpeg',
-          tagline: 'Simplifica. Ejecuta. Avanza.',
-          tags: ['Inteligencia Artificial', 'Desarrollo Mobile', 'Diseño UI/UX', 'Productividad'],
-          problem: 'Tienes un objetivo grande — camperizar tu coche, lanzar un proyecto, aprender una skill nueva — pero no sabes por dónde empezar. La complejidad te paraliza.',
-          solution: 'Producty usa inteligencia artificial para desglosar cualquier objetivo en pasos simples y ejecutables. Tú defines el destino, Producty traza el camino.',
-          betaBadge: 'En fase de desarrollo · Beta privada',
-          playStoreText: 'Solicitar acceso a Producty',
-          betaSubtext: 'Participa como tester temprano antes del lanzamiento oficial en Google Play.',
-          screenshots: [
-            { src: 'assets/images/software/producty-shot-01.png', alt: 'Producty - Comprométete contigo mismo' },
-            { src: 'assets/images/software/producty-shot-02.png', alt: 'Producty - Controla tu tiempo' },
-            { src: 'assets/images/software/producty-shot-03.png', alt: 'Producty - Desglose inteligente' },
-            { src: 'assets/images/software/grup6.png', alt: 'Producty - Telemetría' },
-          ],
-        },
         {
           id: 'matinium',
           subhead: 'Bienestar Mental & El Camino del Artista',
@@ -189,7 +170,25 @@ const DICTIONARY = {
           screenshots: [
             { src: 'assets/images/software/friction-shot-01.png', alt: 'Friction - Dashboard de Control y Apps Vigiladas' },
             { src: 'assets/images/software/friction-shot-02.png', alt: 'Friction - Desafío Matemático de 3 Ecuaciones' },
-            { src: 'assets/images/software/friction-shot-03.png', alt: 'Friction - Intercepción y Pase Temporal Consciente' },
+          ],
+        },
+        {
+          id: 'producty',
+          subhead: 'Inteligencia Artificial & Metas',
+          appName: 'Producty',
+          appIcon: 'assets/images/software/producty-icon.jpeg',
+          tagline: 'Simplifica. Ejecuta. Avanza.',
+          tags: ['Inteligencia Artificial', 'Desarrollo Mobile', 'Diseño UI/UX', 'Productividad'],
+          problem: 'Tienes un objetivo grande — camperizar tu coche, lanzar un proyecto, aprender una skill nueva — pero no sabes por dónde empezar. La complejidad te paraliza.',
+          solution: 'Producty usa inteligencia artificial para desglosar cualquier objetivo en pasos simples y ejecutables. Tú defines el destino, Producty traza el camino.',
+          betaBadge: 'En fase de desarrollo · Beta privada',
+          playStoreText: 'Solicitar acceso a Producty',
+          betaSubtext: 'Participa como tester temprano antes del lanzamiento oficial en Google Play.',
+          screenshots: [
+            { src: 'assets/images/software/producty-shot-01.png', alt: 'Producty - Comprométete contigo mismo' },
+            { src: 'assets/images/software/producty-shot-02.png', alt: 'Producty - Controla tu tiempo' },
+            { src: 'assets/images/software/producty-shot-03.png', alt: 'Producty - Desglose inteligente' },
+            { src: 'assets/images/software/grup6.png', alt: 'Producty - Telemetría' },
           ],
         }
       ],
@@ -439,9 +438,9 @@ const DICTIONARY = {
       {
         id: 'software',
         category: 'Software & Artificial Intelligence',
-        title: 'Proprietary Apps — Producty,<br>Matinium & Friction.',
+        title: 'Proprietary Apps — Matinium,<br>Friction & Producty.',
         ctaText: 'Explore Software & Apps',
-        background: { type: 'product', src: 'assets/images/software/producty-mockup-1.png', alt: 'Producty App - Mockup' },
+        background: { type: 'product', src: 'assets/images/software/matinium-shot-01.png', alt: 'Matinium & Proprietary Apps' },
       },
       {
         id: 'philosophy',
@@ -504,27 +503,8 @@ const DICTIONARY = {
       },
     },
     software: {
-      hero: { type: 'product', src: 'assets/images/software/producty-mockup-1.png', alt: 'Proprietary Apps & Software', title: 'Proprietary Apps', subtitle: 'Digital systems and mobile applications engineered for clarity, attention sovereignty, and goal execution.' },
+      hero: { type: 'product', src: 'assets/images/software/matinium-shot-01.png', alt: 'Proprietary Apps & Software', title: 'Proprietary Apps', subtitle: 'Digital systems and mobile applications engineered for clarity, attention sovereignty, and goal execution.' },
       apps: [
-        {
-          id: 'producty',
-          subhead: 'Artificial Intelligence & Goals',
-          appName: 'Producty',
-          appIcon: 'assets/images/software/producty-icon.jpeg',
-          tagline: 'Simplify. Execute. Advance.',
-          tags: ['Artificial Intelligence', 'Mobile Development', 'UI/UX Design', 'Productivity'],
-          problem: 'You have a big goal — camperizing your car, launching a project, learning a new skill — but you do not know where to start. Complexity paralyzes you.',
-          solution: 'Producty uses artificial intelligence to break down any goal into simple, actionable steps. You define the destination, Producty charts the path.',
-          betaBadge: 'In Development · Closed Beta',
-          playStoreText: 'Request Producty Beta Access',
-          betaSubtext: 'Join as an early tester ahead of the official launch on Google Play.',
-          screenshots: [
-            { src: 'assets/images/software/producty-shot-01.png', alt: 'Producty - Commit to yourself' },
-            { src: 'assets/images/software/producty-shot-02.png', alt: 'Producty - Control your time' },
-            { src: 'assets/images/software/producty-shot-03.png', alt: 'Producty - Smart breakdown' },
-            { src: 'assets/images/software/grup6.png', alt: 'Producty - Telemetry' },
-          ],
-        },
         {
           id: 'matinium',
           subhead: 'Mental Wellbeing & The Artist\'s Way',
@@ -559,7 +539,25 @@ const DICTIONARY = {
           screenshots: [
             { src: 'assets/images/software/friction-shot-01.png', alt: 'Friction - Control Dashboard & Monitored Apps' },
             { src: 'assets/images/software/friction-shot-02.png', alt: 'Friction - 3-Equation Mental Math Challenge' },
-            { src: 'assets/images/software/friction-shot-03.png', alt: 'Friction - Interception & Mindful Pass' },
+          ],
+        },
+        {
+          id: 'producty',
+          subhead: 'Artificial Intelligence & Goals',
+          appName: 'Producty',
+          appIcon: 'assets/images/software/producty-icon.jpeg',
+          tagline: 'Simplify. Execute. Advance.',
+          tags: ['Artificial Intelligence', 'Mobile Development', 'UI/UX Design', 'Productivity'],
+          problem: 'You have a big goal — camperizing your car, launching a project, learning a new skill — but you do not know where to start. Complexity paralyzes you.',
+          solution: 'Producty uses artificial intelligence to break down any goal into simple, actionable steps. You define the destination, Producty charts the path.',
+          betaBadge: 'In Development · Closed Beta',
+          playStoreText: 'Request Producty Beta Access',
+          betaSubtext: 'Join as an early tester ahead of the official launch on Google Play.',
+          screenshots: [
+            { src: 'assets/images/software/producty-shot-01.png', alt: 'Producty - Commit to yourself' },
+            { src: 'assets/images/software/producty-shot-02.png', alt: 'Producty - Control your time' },
+            { src: 'assets/images/software/producty-shot-03.png', alt: 'Producty - Smart breakdown' },
+            { src: 'assets/images/software/grup6.png', alt: 'Producty - Telemetry' },
           ],
         }
       ],
