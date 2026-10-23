@@ -41,7 +41,7 @@ const DICTIONARY = {
       privacyPrefix: "He leído y acepto la",
       privacyLinkText: "Política de Privacidad",
       privacySuffix: "y consiento el tratamiento de mis datos para atender mi solicitud.",
-      privacySummary: "<strong>Información básica sobre Protección de Datos (RGPD):</strong> <strong>Responsable:</strong> A-Z DISSENY, SL. (NIF B60369329). <strong>Finalidad:</strong> Gestionar tu solicitud de contacto, presupuesto profesional o acceso a la Beta de Producty. <strong>Legitimación:</strong> Consentimiento del interesado (Art. 6.1.a RGPD) y medidas precontractuales (Art. 6.1.b RGPD). <strong>Destinatarios:</strong> No se cederán datos a terceros salvo obligación legal; intervienen como encargados técnicos FormSubmit.co (envío), Google LLC (correo) y Netlify Inc. (alojamiento). <strong>Derechos:</strong> Acceso, rectificación, supresión y demás derechos en <a href=\"mailto:azdisseny.sl@gmail.com\">azdisseny.sl@gmail.com</a>.",
+      privacySummary: "<strong>Información básica sobre Protección de Datos (RGPD):</strong> <strong>Responsable:</strong> A-Z DISSENY, SL. (NIF B60369329). <strong>Finalidad:</strong> Gestionar tu solicitud de contacto, presupuesto profesional o acceso a la Beta de Producty. <strong>Legitimación:</strong> Consentimiento del interesado (Art. 6.1.a RGPD) y medidas precontractuales (Art. 6.1.b RGPD). <strong>Destinatarios:</strong> No se cederán datos a terceros salvo obligación legal; intervienen como encargados técnicos FormSubmit.co (envío), Google LLC (correo) y GitHub, Inc. (alojamiento / GitHub Pages). <strong>Derechos:</strong> Acceso, rectificación, supresión y demás derechos en <a href=\"mailto:azdisseny.sl@gmail.com\">azdisseny.sl@gmail.com</a>.",
       submitBtn: "Enviar Propuesta",
       submittingText: "Enviando propuesta...",
       successMsg: "✓ ¡Propuesta enviada con éxito! Te responderé en breve a tu correo.",
@@ -264,7 +264,7 @@ const DICTIONARY = {
               <li><strong>FormSubmit.co:</strong> Servicio técnico de enrutamiento seguro de formularios web hacia el correo corporativo.</li>
               <li><strong>Google LLC (Gmail & Google Fonts):</strong> Gestión del correo electrónico corporativo y servicio de tipografías web.</li>
               <li><strong>Stripe Payments Europe, Ltd.:</strong> Pasarela de pago certificada PCI-DSS para el procesamiento seguro de compras (A-Z DISSENY, SL. nunca almacena los datos de tu tarjeta bancaria).</li>
-              <li><strong>Netlify, Inc.:</strong> Proveedor de alojamiento web (hosting) y red de distribución de contenidos (CDN).</li>
+              <li><strong>GitHub, Inc. (Microsoft):</strong> Proveedor de alojamiento web (hosting) y red de distribución de contenidos (CDN) mediante GitHub Pages.</li>
             </ul>
 
             <h3>6. Derechos del Usuario</h3>
@@ -368,7 +368,7 @@ const DICTIONARY = {
       privacyPrefix: "I have read and accept the",
       privacyLinkText: "Privacy Policy",
       privacySuffix: "and consent to the processing of my data to handle my request.",
-      privacySummary: "<strong>Basic Data Protection Information (GDPR):</strong> <strong>Controller:</strong> A-Z DISSENY, SL. (Tax ID B60369329). <strong>Purpose:</strong> Manage your contact inquiry, professional quote, or Producty Beta access request. <strong>Legal Basis:</strong> User consent (Art. 6.1.a GDPR) and pre-contractual measures (Art. 6.1.b GDPR). <strong>Recipients:</strong> Data will not be shared with third parties except by legal obligation; technical processors include FormSubmit.co (delivery), Google LLC (email), and Netlify Inc. (hosting). <strong>Rights:</strong> Access, rectification, erasure, and other GDPR rights via <a href=\"mailto:azdisseny.sl@gmail.com\">azdisseny.sl@gmail.com</a>.",
+      privacySummary: "<strong>Basic Data Protection Information (GDPR):</strong> <strong>Controller:</strong> A-Z DISSENY, SL. (Tax ID B60369329). <strong>Purpose:</strong> Manage your contact inquiry, professional quote, or Producty Beta access request. <strong>Legal Basis:</strong> User consent (Art. 6.1.a GDPR) and pre-contractual measures (Art. 6.1.b GDPR). <strong>Recipients:</strong> Data will not be shared with third parties except by legal obligation; technical processors include FormSubmit.co (delivery), Google LLC (email), and GitHub, Inc. (hosting / GitHub Pages). <strong>Rights:</strong> Access, rectification, erasure, and other GDPR rights via <a href=\"mailto:azdisseny.sl@gmail.com\">azdisseny.sl@gmail.com</a>.",
       submitBtn: "Send Proposal",
       submittingText: "Sending proposal...",
       successMsg: "✓ Proposal sent successfully! I will reply to your email shortly.",
@@ -591,7 +591,7 @@ const DICTIONARY = {
               <li><strong>FormSubmit.co:</strong> Technical routing service for secure delivery of web form submissions to our corporate email.</li>
               <li><strong>Google LLC (Gmail & Google Fonts):</strong> Corporate email hosting and web font delivery.</li>
               <li><strong>Stripe Payments Europe, Ltd.:</strong> PCI-DSS certified payment gateway for secure checkout processing (A-Z DISSENY, SL. never stores your credit card details).</li>
-              <li><strong>Netlify, Inc.:</strong> Web hosting and Content Delivery Network (CDN) infrastructure.</li>
+              <li><strong>GitHub, Inc. (Microsoft):</strong> Web hosting and Content Delivery Network (CDN) infrastructure via GitHub Pages.</li>
             </ul>
 
             <h3>6. Your GDPR Rights</h3>
