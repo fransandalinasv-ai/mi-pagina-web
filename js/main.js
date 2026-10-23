@@ -208,11 +208,6 @@ const Renderer = {
    * Genera la sección de SOFTWARE.
    */
   softwareSection(data) {
-    const screenshots = data.screenshots.map(s => `
-      <div class="software-screenshots__item">
-        <img data-src="${s.src}" alt="${s.alt}" class="lazy" loading="lazy">
-      </div>`).join('');
-
     let ecosystemHtml = '';
     if (data.ecosystem) {
       const eco = data.ecosystem;
@@ -242,61 +237,76 @@ const Renderer = {
 
     const problemLabel = (typeof currentLang !== 'undefined' && currentLang === 'en') ? 'The Problem' : 'El Problema';
     const solutionLabel = (typeof currentLang !== 'undefined' && currentLang === 'en') ? 'The Solution' : 'La Solución';
-    const productySubheadLabel = (typeof currentLang !== 'undefined' && currentLang === 'en') ? 'Proprietary Software' : 'Software Propio';
-    const productyTitleLabel = (typeof currentLang !== 'undefined' && currentLang === 'en') ? 'Producty — AI Habit & Goal App' : 'Producty — App con Inteligencia Artificial';
+    const screenshotsLabel = (typeof currentLang !== 'undefined' && currentLang === 'en') ? 'Screenshots' : 'Capturas de Pantalla';
+    const defaultSubhead = (typeof currentLang !== 'undefined' && currentLang === 'en') ? 'Proprietary Software' : 'Software Propio';
+
+    const apps = data.apps || [data];
+    const appsHtml = apps.map((app, index) => {
+      const screenshots = (app.screenshots || []).map(s => `
+        <div class="software-screenshots__item">
+          <img data-src="${s.src}" alt="${s.alt}" class="lazy" loading="lazy" data-lightbox>
+        </div>`).join('');
+
+      const separatorStyle = index > 0 
+        ? 'margin-top: 6rem; padding-top: 5rem; border-top: 1px solid rgba(255, 255, 255, 0.08);' 
+        : 'margin-top: 5rem;';
+
+      return `
+        <div class="producty-section animate-on-scroll" style="${separatorStyle}">
+          <div class="section-header animate-on-scroll" style="margin-bottom: 2rem;">
+            <span class="section-header__label">${app.subhead || defaultSubhead}</span>
+            <h2 class="section-header__title">${app.appName}</h2>
+          </div>
+          <div class="software-hero animate-on-scroll">
+            <div class="software-hero__icon">
+              <img src="${app.appIcon}" alt="Icono de ${app.appName}" loading="lazy">
+            </div>
+            <div class="software-hero__text">
+              <h2>${app.appName}</h2>
+              <p class="software-hero__tagline">${app.tagline}</p>
+              ${app.tags ? `<div class="project-tags" style="margin-top: 0.75rem;">${app.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}</div>` : ''}
+            </div>
+          </div>
+          <div class="software-problem-solution">
+            <div class="software-problem animate-on-scroll">
+              <h3>🔴 ${problemLabel}</h3>
+              <p>${app.problem}</p>
+            </div>
+            <div class="software-solution animate-on-scroll">
+              <h3>🟢 ${solutionLabel}</h3>
+              <p>${app.solution}</p>
+            </div>
+          </div>
+          <div class="section-header animate-on-scroll">
+            <span class="section-header__label">${app.appName}</span>
+            <h2 class="section-header__title">${screenshotsLabel}</h2>
+          </div>
+          <div class="software-screenshots" role="region" aria-label="Capturas de ${app.appName}">${screenshots}</div>
+          <div class="software-cta-container animate-on-scroll">
+            ${app.betaBadge ? `
+              <div class="software-beta-badge">
+                <span class="software-beta-dot"></span>
+                <span>${app.betaBadge}</span>
+              </div>` : ''}
+            <button class="software-cta" data-open-modal aria-label="${app.playStoreText}">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M10 2v7.31L4.76 18.2A2 2 0 0 0 6.5 21h11a2 2 0 0 0 1.74-2.8L14 9.31V2"/>
+                <path d="M8.5 2h7"/>
+                <path d="M7 16h10"/>
+              </svg>
+              <span>${app.playStoreText}</span>
+            </button>
+            ${app.betaSubtext ? `<p class="software-beta-subtext">${app.betaSubtext}</p>` : ''}
+          </div>
+        </div>`;
+    }).join('');
 
     return `
       <section id="detail-software" class="detail__section" aria-label="Software">
         ${this.detailHero({ ...data.hero, category: (typeof currentLang !== 'undefined' && currentLang === 'en') ? 'Software & AI' : 'Software & IA' })}
         <div class="detail__content">
           ${ecosystemHtml}
-          <div class="producty-section animate-on-scroll" style="margin-top: 5rem;">
-            <div class="section-header animate-on-scroll" style="margin-bottom: 2rem;">
-              <span class="section-header__label">${productySubheadLabel}</span>
-              <h2 class="section-header__title">${productyTitleLabel}</h2>
-            </div>
-            <div class="software-hero animate-on-scroll">
-              <div class="software-hero__icon">
-                <img src="${data.appIcon}" alt="Icono de ${data.appName}" loading="lazy">
-              </div>
-              <div class="software-hero__text">
-                <h2>${data.appName}</h2>
-                <p class="software-hero__tagline">${data.tagline}</p>
-                ${data.tags ? `<div class="project-tags" style="margin-top: 0.75rem;">${data.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}</div>` : ''}
-              </div>
-            </div>
-            <div class="software-problem-solution">
-              <div class="software-problem animate-on-scroll">
-                <h3>🔴 ${problemLabel}</h3>
-                <p>${data.problem}</p>
-              </div>
-              <div class="software-solution animate-on-scroll">
-                <h3>🟢 ${solutionLabel}</h3>
-                <p>${data.solution}</p>
-              </div>
-            </div>
-            <div class="section-header animate-on-scroll">
-              <span class="section-header__label">${(typeof currentLang !== 'undefined' && currentLang === 'en') ? 'The App' : 'La App'}</span>
-              <h2 class="section-header__title">${(typeof currentLang !== 'undefined' && currentLang === 'en') ? 'Screenshots' : 'Capturas de Pantalla'}</h2>
-            </div>
-            <div class="software-screenshots" role="region" aria-label="Capturas de pantalla">${screenshots}</div>
-            <div class="software-cta-container animate-on-scroll">
-              ${data.betaBadge ? `
-                <div class="software-beta-badge">
-                  <span class="software-beta-dot"></span>
-                  <span>${data.betaBadge}</span>
-                </div>` : ''}
-              <button class="software-cta" data-open-modal aria-label="${data.playStoreText}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M10 2v7.31L4.76 18.2A2 2 0 0 0 6.5 21h11a2 2 0 0 0 1.74-2.8L14 9.31V2"/>
-                  <path d="M8.5 2h7"/>
-                  <path d="M7 16h10"/>
-                </svg>
-                <span>${data.playStoreText}</span>
-              </button>
-              ${data.betaSubtext ? `<p class="software-beta-subtext">${data.betaSubtext}</p>` : ''}
-            </div>
-          </div>
+          ${appsHtml}
         </div>
       </section>`;
   },
