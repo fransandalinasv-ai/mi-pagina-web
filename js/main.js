@@ -45,12 +45,21 @@ const Renderer = {
                   <source src="${bg.src}" type="video/mp4">
                 </video>`;
       case 'product':
-        return `<div class="slide__bg slide__bg--gradient" aria-hidden="true">
-                  <img src="${bg.src}" alt="${bg.alt || ''}" class="slide__bg-product">
-                </div>`;
+        if (bg.src) {
+          return `<div class="slide__bg slide__bg--gradient" aria-hidden="true">
+                    <img src="${bg.src}" alt="${bg.alt || ''}" class="slide__bg-product">
+                  </div>`;
+        }
+        return `<div class="slide__bg slide__bg--gradient" aria-hidden="true"></div>`;
+      case 'gradient':
+      case 'none':
+        return `<div class="slide__bg slide__bg--gradient" aria-hidden="true"></div>`;
       case 'image':
       default:
-        return `<img src="${bg.src}" alt="${bg.alt || ''}" class="slide__bg">`;
+        if (bg.src) {
+          return `<img src="${bg.src}" alt="${bg.alt || ''}" class="slide__bg">`;
+        }
+        return `<div class="slide__bg slide__bg--gradient" aria-hidden="true"></div>`;
     }
   },
 
@@ -81,12 +90,14 @@ const Renderer = {
       bgHtml = `<video class="detail__hero-img" autoplay muted loop playsinline preload="auto">
                   <source src="${hero.src}" type="video/mp4">
                 </video>`;
-    } else if (hero.type === 'product') {
+    } else if (hero.type === 'product' && hero.src) {
       bgHtml = `<div class="slide__bg slide__bg--gradient">
                   <img src="${hero.src}" alt="${hero.alt || ''}" class="slide__bg-product">
                 </div>`;
-    } else {
+    } else if (hero.type === 'image' && hero.src) {
       bgHtml = `<img src="${hero.src}" alt="${hero.alt || ''}" class="detail__hero-img">`;
+    } else {
+      bgHtml = `<div class="slide__bg slide__bg--gradient"></div>`;
     }
 
     return `
@@ -215,7 +226,7 @@ const Renderer = {
       const tagsHtml = (c.tags || []).map(t => `<span class="ai-showcase__tag">${t}</span>`).join('');
 
       ecosystemHtml = `
-        <div class="ai-ecosystem-section animate-on-scroll">
+        <div class="ai-ecosystem-section animate-on-scroll" style="margin-top: 6rem; padding-top: 5rem; border-top: 1px solid rgba(255, 255, 255, 0.08);">
           <div class="section-header">
             <span class="section-header__label">${eco.sectionLabel}</span>
             <h2 class="section-header__title">${eco.sectionTitle}</h2>
@@ -305,8 +316,8 @@ const Renderer = {
       <section id="detail-software" class="detail__section" aria-label="Software">
         ${this.detailHero({ ...data.hero, category: (typeof currentLang !== 'undefined' && currentLang === 'en') ? 'Software & AI' : 'Software & IA' })}
         <div class="detail__content">
-          ${ecosystemHtml}
           ${appsHtml}
+          ${ecosystemHtml}
         </div>
       </section>`;
   },
