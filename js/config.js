@@ -71,7 +71,7 @@ const DICTIONARY = {
         category: 'Software & Inteligencia Artificial',
         title: 'Apps de Autor — Matinium,<br>Friction & Producty.',
         ctaText: 'Explora Software & Apps',
-        background: { type: 'gradient' },
+        background: { type: 'product', src: 'assets/images/software/matinium-icon.png', alt: 'Matinium Logo' },
       },
       {
         id: 'philosophy',
@@ -134,7 +134,7 @@ const DICTIONARY = {
       },
     },
     software: {
-      hero: { type: 'gradient', title: 'Apps de Autor', subtitle: 'Sistemas digitales y aplicaciones móviles diseñadas para la claridad, la soberanía de la atención y la ejecución de metas.' },
+      hero: { type: 'product', src: 'assets/images/software/matinium-icon.png', alt: 'Matinium Logo', title: 'Apps de Autor', subtitle: 'Sistemas digitales y aplicaciones móviles diseñadas para la claridad, la soberanía de la atención y la ejecución de metas.' },
       apps: [
         {
           id: 'matinium',
@@ -440,7 +440,7 @@ const DICTIONARY = {
         category: 'Software & Artificial Intelligence',
         title: 'Proprietary Apps — Matinium,<br>Friction & Producty.',
         ctaText: 'Explore Software & Apps',
-        background: { type: 'gradient' },
+        background: { type: 'product', src: 'assets/images/software/matinium-icon.png', alt: 'Matinium Logo' },
       },
       {
         id: 'philosophy',
@@ -503,7 +503,7 @@ const DICTIONARY = {
       },
     },
     software: {
-      hero: { type: 'gradient', title: 'Proprietary Apps', subtitle: 'Digital systems and mobile applications engineered for clarity, attention sovereignty, and goal execution.' },
+      hero: { type: 'product', src: 'assets/images/software/matinium-icon.png', alt: 'Matinium Logo', title: 'Proprietary Apps', subtitle: 'Digital systems and mobile applications engineered for clarity, attention sovereignty, and goal execution.' },
       apps: [
         {
           id: 'matinium',

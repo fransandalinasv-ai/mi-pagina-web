@@ -330,10 +330,29 @@ video.slide__video-bg {
   filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.5));
 }
 
-/* Ajustes para el slide de Software & IA (Foto de evento) */
+/* Ajustes para el slide de Software (Icono de Matinium) */
 .slide[data-section="software"] .slide__bg {
   object-position: center 20%;
   filter: none;
+}
+
+.slide[data-section="software"] .slide__bg-product,
+.detail__hero .slide__bg-product {
+  border-radius: 22%;
+  max-width: min(320px, 38vw);
+  max-height: min(320px, 45vh);
+  aspect-ratio: 1;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 100px rgba(244, 236, 217, 0.1);
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.6));
+}
+
+@media screen and (max-width: 768px) {
+  .slide[data-section="software"] .slide__bg-product,
+  .detail__hero .slide__bg-product {
+    max-width: min(180px, 45vw);
+    max-height: min(180px, 30vh);
+    border-radius: 22%;
+  }
 }
 
 .slide[data-section="software"] .slide__overlay {
