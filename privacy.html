@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidad — Friction | AZ-disseny</title>
+  <meta name="description" content="Política de Privacidad de Friction. Compromiso absoluto con la privacidad, procesamiento 100% local y cero recopilación de datos.">
+  <meta name="theme-color" content="#000000">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #000000;
+      --surface: #111113;
+      --card: #1c1c1e;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-active: rgba(255, 255, 255, 0.2);
+      --text-primary: #f5f5f7;
+      --text-secondary: #86868b;
+      --accent: #ffffff;
+      --badge-bg: rgba(52, 199, 89, 0.12);
+      --badge-text: #34c759;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 40px 20px 80px;
+    }
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    header {
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.4px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+    h1 {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -0.8px;
+      margin-bottom: 10px;
+    }
+    .meta {
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px 28px;
+      margin-bottom: 24px;
+    }
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.4px;
+      margin-bottom: 14px;
+      color: var(--text-primary);
+    }
+    p {
+      color: var(--text-secondary);
+      font-size: 15px;
+      margin-bottom: 14px;
+    }
+    p:last-child {
+      margin-bottom: 0;
+    }
+    strong {
+      color: var(--text-primary);
+    }
+    ul {
+      margin: 12px 0 16px 20px;
+      color: var(--text-secondary);
+      font-size: 15px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    .highlight-box {
+      background: var(--surface);
+      border: 1px solid var(--border-active);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin: 16px 0;
+    }
+    .highlight-box h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+    footer {
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    a {
+      color: var(--text-primary);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">Privacidad Garantizada · 100% Offline</div>
+      <h1>Política de Privacidad de Friction</h1>
+      <div class="meta">
+        <strong>Aplicación:</strong> Friction (com.sandaproject.friction.friction)<br>
+        <strong>Desarrollador:</strong> Francesc Sandalinas / A-Z DISSENY, S.L.<br>
+        <strong>Última actualización:</strong> 29 de octubre de 2026
+      </div>
+    </header>
+
+    <div class="card">
+      <h2>1. Compromiso Fundamental: Cero Recopilación de Datos</h2>
+      <p>
+        <strong>Friction</strong> ha sido diseñada bajo el principio de <em>Privacidad por Diseño (Privacy by Design)</em>. 
+        Creemos firmemente que una herramienta de bienestar digital y productividad debe ser un espacio privado y seguro.
+      </p>
+      <p>
+        Friction <strong>no recopila, no registra, no almacena en la nube ni comparte con terceros ningún dato personal</strong>, información de navegación, hábitos de uso, datos de inicio de sesión ni credenciales del usuario. La aplicación funciona de manera completamente local y autónoma en tu dispositivo Android.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>2. Declaración de Permisos Sensibles de Android</h2>
+      <p>
+        Para cumplir estrictamente su función nuclear de romper el bucle dopamínico del <em>doomscrolling</em> mediante retos conscientes de cálculo mental, Friction requiere los siguientes permisos del sistema operativo Android:
+      </p>
+
+      <div class="highlight-box">
+        <h3>A. Servicio de Accesibilidad (android.permission.BIND_ACCESSIBILITY_SERVICE)</h3>
+        <p>
+          <strong>Finalidad:</strong> Este permiso se utiliza única y exclusivamente para detectar en tiempo real (evento <code>TYPE_WINDOW_STATE_CHANGED</code>) cuándo se pasa a primer plano una aplicación incluida en la lista de "Aplicaciones Protegidas" configurada libremente por el usuario (por ejemplo: Instagram, TikTok o X).
+        </p>
+        <p>
+          <strong>Garantías de Seguridad:</strong>
+        </p>
+        <ul>
+          <li><strong>No lee contenido de pantalla:</strong> Friction jamás inspecciona, almacena ni transmite los textos, imágenes ni contenido visual de las aplicaciones que utilizas.</li>
+          <li><strong>No registra pulsaciones de teclas (Keylogger):</strong> El servicio de accesibilidad no captura ni registra contraseñas, mensajes privados ni pulsaciones de teclado.</li>
+          <li><strong>Divulgación destacada:</strong> La activación de este permiso es totalmente opcional y requiere el consentimiento expreso e informado del usuario a través de la pantalla de bienvenida y los ajustes nativos de Android.</li>
+        </ul>
+      </div>
+
+      <div class="highlight-box">
+        <h3>B. Visibilidad de Aplicaciones Instaladas (android.permission.QUERY_ALL_PACKAGES)</h3>
+        <p>
+          <strong>Finalidad:</strong> Permite mostrar al usuario el listado de aplicaciones instaladas en su propio dispositivo dentro del selector de aplicaciones de Friction. De este modo, el usuario puede seleccionar libremente qué aplicaciones específicas desea restringir.
+        </p>
+        <p>
+          <strong>Garantías de Seguridad:</strong>
+        </p>
+        <ul>
+          <li>La consulta del inventario de paquetes se ejecuta en la memoria local del dispositivo.</li>
+          <li>No se transmite ni se comparte la lista de aplicaciones instaladas con ningún servidor externo ni entidad analítica o publicitaria.</li>
+        </ul>
+      </div>
+
+      <div class="highlight-box">
+        <h3>C. Superposición sobre otras aplicaciones (SYSTEM_ALERT_WINDOW)</h3>
+        <p>
+          <strong>Finalidad:</strong> Permite desplegar inmediatamente la interfaz minimalista de reto de cálculo mental sobre la pantalla en el instante en que el usuario intenta abrir una aplicación protegida, pausando el impulso automático antes de permitir o cancelar el acceso.
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3. Almacenamiento Local y Métricas</h2>
+      <p>
+        Las métricas visibles en el panel de control de Friction (impulsos frenados, tiempo estimado rescatado y promedio diario) se calculan y guardan exclusivamente en el almacenamiento interno privado del dispositivo (<code>SharedPreferences</code>). 
+      </p>
+      <p>
+        Estos contadores ocupan menos de 2 KB en total, nunca salen del dispositivo y se destruyen automáticamente si el usuario desinstala la aplicación o borra los datos de almacenamiento.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>4. Servicios de Terceros, Redes de Anuncios y Analítica</h2>
+      <p>
+        Friction <strong>no incluye SDKs de publicidad, ni herramientas de seguimiento, ni plataformas analíticas de terceros</strong> (como Google Analytics, Firebase Analytics, Meta SDK o brokers de datos). Cero rastreo.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>5. Derechos del Usuario y Eliminación de Datos</h2>
+      <p>
+        Dado que todos los datos residen exclusivamente en tu dispositivo, tienes control absoluto en todo momento:
+      </p>
+      <ul>
+        <li>Puedes revocar los permisos de Accesibilidad y Superposición en cualquier momento desde los Ajustes de Android.</li>
+        <li>Puedes restablecer o desinstalar Friction cuando lo desees para eliminar de forma inmediata e irreversible cualquier contador local.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>6. Contacto</h2>
+      <p>
+        Si tienes cualquier pregunta sobre esta Política de Privacidad o sobre el funcionamiento de Friction, puedes ponerte en contacto directamente con nosotros:
+      </p>
+      <p>
+        <strong>A-Z DISSENY, S.L. / Francesc Sandalinas</strong><br>
+        Correo electrónico: <a href="mailto:azdisseny.sl@gmail.com">azdisseny.sl@gmail.com</a><br>
+        Sitio Web: <a href="https://fransandalinasv-ai.github.io/mi-pagina-web/" target="_blank" rel="noopener">https://fransandalinasv-ai.github.io/mi-pagina-web/</a>
+      </p>
+    </div>
+
+    <footer>
+      <div>&copy; 2026 AZ-disseny. Todos los derechos reservados.</div>
+      <div>Friction · Quiet Luxury Digital Wellbeing</div>
+    </footer>
+  </div>
+</body>
+</html>
