@@ -33,7 +33,7 @@ const DICTIONARY = {
       areas: [
         { id: "design", label: "⚙️ Diseño Industrial & CAD 3D", value: "Diseño Industrial & Fabricación (CAD 3D / CNC / Serie)" },
         { id: "software", label: "🤖 Software & Inteligencia Artificial", value: "Software & Inteligencia Artificial" },
-        { id: "art", label: "🎨 Arte & Encargos Visuales", value: "Arte & Expresión Visual" },
+        // { id: "art", label: "🎨 Arte & Encargos Visuales", value: "Arte & Expresión Visual" },
         { id: "consulting", label: "💡 Consultoría Técnica / Otro Reto", value: "Consultoría Técnica / Otro Reto" }
       ],
       messageLabel: "Cuéntame sobre tu proyecto",
@@ -54,8 +54,8 @@ const DICTIONARY = {
       company: 'A-Z DISSENY, SL.',
       author: 'Francesc Sandalinas',
       year: 2026,
-      youtubeUrl: 'https://www.youtube.com/@Sanda.projectAZ',
-      youtubeHandle: '@Sanda.projectAZ',
+      youtubeUrl: '',
+      youtubeHandle: '',
       icon: 'assets/images/branding/sanda-icon.png',
     },
     slides: [
@@ -73,6 +73,7 @@ const DICTIONARY = {
         ctaText: 'Explora Software & Apps',
         background: { type: 'product', src: 'assets/images/software/matinium-icon.png', alt: 'Matinium Logo' },
       },
+      /*
       {
         id: 'philosophy',
         category: 'Filosofía & Surf',
@@ -87,6 +88,7 @@ const DICTIONARY = {
         ctaText: 'Explora la Galería de Arte',
         background: { type: 'image', src: 'assets/images/art/ericeira-vibes.jpg', alt: 'Ericeira Vibes - Cuadro original de SANDA' },
       },
+      */
     ],
     design: {
       hero: { type: 'image', src: 'assets/images/slides/design-lamp.webp', alt: 'Lámpara de diseño orgánico SANDA', title: 'Diseño & Fabricación', subtitle: 'De la idea al objeto físico. Diseño industrial, impresión 3D y fabricación digital.' },
@@ -125,12 +127,8 @@ const DICTIONARY = {
             { title: 'Gestión de Potencia & Baterías', text: 'Distribución de corriente marina (DC), conmutación inteligente de bancos de baterías y protección contra corrosión galvánica.' }
           ]
         },
-        images: [
-          { src: 'assets/images/design/mass-prod-01.png', alt: 'Ensamblaje híbrido (Impresión 3D + Chapa CNC)' },
-          { src: 'assets/images/design/mass-prod-02.png', alt: 'Cuadros de control electromecánicos en serie' },
-          { src: 'assets/images/design/mass-prod-03.png', alt: 'Ensamblaje electromecánico de alta complejidad' },
-          { src: 'assets/images/design/mass-prod-04.png', alt: 'Modelo 3D CAD de chapa metálica' },
-        ],
+        // Galería de fotos crudas de taller desactivada para mantener estética Quiet Luxury e ingeniería limpia
+        images: [],
       },
     },
     software: {
@@ -402,7 +400,7 @@ const DICTIONARY = {
       areas: [
         { id: "design", label: "⚙️ Industrial Design & 3D CAD", value: "Industrial Design & Manufacturing (3D CAD / CNC / Serial)" },
         { id: "software", label: "🤖 Software & Artificial Intelligence", value: "Software & Artificial Intelligence" },
-        { id: "art", label: "🎨 Art & Visual Commissions", value: "Art & Visual Expression" },
+        // { id: "art", label: "🎨 Art & Visual Commissions", value: "Art & Visual Expression" },
         { id: "consulting", label: "💡 Technical Consulting / Other", value: "Technical Consulting / Other Challenge" }
       ],
       messageLabel: "Tell me about your project",
@@ -423,8 +421,8 @@ const DICTIONARY = {
       company: 'A-Z DISSENY, SL.',
       author: 'Francesc Sandalinas',
       year: 2026,
-      youtubeUrl: 'https://www.youtube.com/@Sanda.projectAZ',
-      youtubeHandle: '@Sanda.projectAZ',
+      youtubeUrl: '',
+      youtubeHandle: '',
       icon: 'assets/images/branding/sanda-icon.png',
     },
     slides: [
@@ -442,6 +440,7 @@ const DICTIONARY = {
         ctaText: 'Explore Software & Apps',
         background: { type: 'product', src: 'assets/images/software/matinium-icon.png', alt: 'Matinium Logo' },
       },
+      /*
       {
         id: 'philosophy',
         category: 'Philosophy & Surfing',
@@ -456,6 +455,7 @@ const DICTIONARY = {
         ctaText: 'Explore the Art Gallery',
         background: { type: 'image', src: 'assets/images/art/ericeira-vibes.jpg', alt: 'Ericeira Vibes - Original painting by SANDA' },
       },
+      */
     ],
     design: {
       hero: { type: 'image', src: 'assets/images/slides/design-lamp.webp', alt: 'Organic design lamp by SANDA', title: 'Design & Manufacturing', subtitle: 'From idea to physical object. Industrial design, 3D printing and digital manufacturing.' },
@@ -494,12 +494,8 @@ const DICTIONARY = {
             { title: 'Power Distribution & Batteries', text: 'Marine DC electrical distribution, battery bank management/switching, and galvanic corrosion protection.' }
           ]
         },
-        images: [
-          { src: 'assets/images/design/mass-prod-01.png', alt: 'Hybrid assembly (3D Printing + CNC Sheet Metal)' },
-          { src: 'assets/images/design/mass-prod-02.png', alt: 'Serial electromechanical control panels' },
-          { src: 'assets/images/design/mass-prod-03.png', alt: 'Highly complex electromechanical assembly' },
-          { src: 'assets/images/design/mass-prod-04.png', alt: '3D CAD sheet metal model' },
-        ],
+        // Raw workshop gallery deactivated to keep clean engineering focus
+        images: [],
       },
     },
     software: {

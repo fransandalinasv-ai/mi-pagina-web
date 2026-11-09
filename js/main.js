@@ -193,10 +193,11 @@ const Renderer = {
           </div>
           <p class="mass-production__desc">${mp.desc}</p>
           ${featuredHtml}
+          ${(mp.images && mp.images.length > 0) ? `
           <div class="mass-production__subhead" style="margin-top: 3.5rem; margin-bottom: 1.25rem;">
             <span class="section-header__label">${subheadLabel}</span>
           </div>
-          <div class="design-grid">${mpImages}</div>
+          <div class="design-grid">${mpImages}</div>` : ''}
         </div>`;
     }
 
@@ -613,8 +614,9 @@ const Renderer = {
           <span class="site-footer__brand">${c.brand.name}</span>
           <span class="site-footer__separator">·</span>
           <span class="site-footer__text">${companyText}${c.brand.author} © ${c.brand.year}</span>
+${c.brand.youtubeUrl ? `
           <span class="site-footer__separator">·</span>
-          <a href="${c.brand.youtubeUrl}" target="_blank" rel="noopener noreferrer" class="site-footer__link">YouTube</a>
+          <a href="${c.brand.youtubeUrl}" target="_blank" rel="noopener noreferrer" class="site-footer__link">YouTube</a>` : ''}
         </div>
         <div class="site-footer__legal">
           <button type="button" class="site-footer__legal-btn" data-open-legal="aviso">${l.aviso}</button>
