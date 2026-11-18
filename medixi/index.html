@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mediXI — Centro Legal, Privacidad y Términos de Uso</title>
+  <style>
+    :root {
+      --bg-color: #101113;
+      --card-bg: #181A20;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --gold: #C5A880;
+      --gold-light: #E0C7A6;
+      --text-main: #F5F5F7;
+      --text-muted: #8E8E93;
+      --accent-badge: rgba(197, 168, 128, 0.15);
+      --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-family);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      padding: 0;
+      margin: 0;
+    }
+
+    /* VISTA DE CONFIRMACIÓN DE CORREO (CUANDO VIENE DE SUPABASE AUTH) */
+    #verified-screen {
+      display: none;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+    }
+
+    body.is-verified #verified-screen {
+      display: flex;
+    }
+
+    body.is-verified #legal-header,
+    body.is-verified #legal-main,
+    body.is-verified #legal-footer {
+      display: none;
+    }
+
+    .verified-card {
+      max-width: 440px;
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid rgba(197, 168, 128, 0.25);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      animation: fadeIn 0.35s ease;
+    }
+
+    .verified-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 1.25rem;
+      border-radius: 50%;
+      background: rgba(197, 168, 128, 0.12);
+      border: 1.5px solid rgba(197, 168, 128, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 1.75rem;
+    }
+
+    .verified-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 0.65rem;
+      letter-spacing: -0.02em;
+    }
+
+    .verified-text {
+      font-size: 0.95rem;
+      color: #D1D1D6;
+      margin-bottom: 1.75rem;
+      line-height: 1.55;
+    }
+
+    .verified-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-color);
+      color: var(--gold-light);
+      padding: 0.65rem 1.25rem;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.75rem;
+    }
+
+    .verified-footer-links {
+      border-top: 1px solid var(--border-color);
+      padding-top: 1.25rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .verified-footer-links button {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+    }
+
+    .verified-footer-links button:hover {
+      color: var(--gold-light);
+    }
+
+    header {
+      border-bottom: 1px solid var(--border-color);
+      background: rgba(16, 17, 19, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--gold), #8A6D3B);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text-main);
+    }
+
+    .brand-subtitle {
+      font-size: 0.75rem;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 4px;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.5rem 1rem;
+      border-radius: 7px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-main);
+    }
+
+    .tab-btn.active {
+      background: var(--card-bg);
+      color: var(--gold-light);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    main {
+      max-width: 900px;
+      margin: 2.5rem auto 5rem;
+      padding: 0 1.5rem;
+    }
+
+    .doc-section {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .doc-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .doc-header {
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1.5rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--accent-badge);
+      color: var(--gold);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 1px solid rgba(197, 168, 128, 0.25);
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      color: #FFFFFF;
+    }
+
+    .meta-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .meta-item strong {
+      color: var(--text-main);
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      margin: 2.5rem 0 1rem;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      color: #D1D1D6;
+      font-size: 0.95rem;
+    }
+
+    ul, ol {
+      margin: 0.75rem 0 1.25rem 1.5rem;
+      color: #D1D1D6;
+      font-size: 0.95rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    .callout {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin: 1.5rem 0;
+    }
+
+    .callout p:last-child {
+      margin-bottom: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      background: var(--card-bg);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      padding: 0.85rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    th {
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--gold);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    a {
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    a:hover {
+      color: var(--gold-light);
+      text-decoration: underline;
+    }
+
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 680px) {
+      .header-container {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+      .tabs {
+        width: 100%;
+      }
+      .tab-btn {
+        flex: 1;
+        text-align: center;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PANTALLA LIMPIA DE CORREO VERIFICADO -->
+  <section id="verified-screen">
+    <div class="verified-card">
+      <div class="verified-icon">&#10003;</div>
+      <h1 class="verified-title">Correo verificado</h1>
+      <p class="verified-text">
+        Tu cuenta de <strong>mediXI</strong> está activa. Ya puedes cerrar esta ventana, volver a la aplicación e iniciar sesión con tu correo y contraseña.
+      </p>
+      <div class="verified-badge">Abre la app mediXI en tu móvil</div>
+      <div class="verified-footer-links">
+        <button type="button" onclick="openLegalSection('privacy')">Política de Privacidad</button>
+        <span>•</span>
+        <button type="button" onclick="openLegalSection('terms')">Términos de Uso</button>
+      </div>
+    </div>
+  </section>
+
+  <header id="legal-header">
+    <div class="header-container">
+      <div class="brand">
+        <div class="brand-logo">M</div>
+        <div>
+          <div class="brand-title">mediXI</div>
+          <div class="brand-subtitle">Club de Nodos y Cafeterías</div>
+        </div>
+      </div>
+      <nav class="tabs">
+        <button class="tab-btn active" onclick="switchTab('privacy')">Política de Privacidad</button>
+        <button class="tab-btn" onclick="switchTab('terms')">Términos de Uso</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="legal-main">
+    <!-- TAB 1: POLITICA DE PRIVACIDAD -->
+    <article id="privacy" class="doc-section active">
+      <div class="doc-header">
+        <span class="badge">RGPD y Apple Guideline 5.1.1</span>
+        <h1>Política de Privacidad de mediXI</h1>
+        <div class="meta-bar">
+          <div class="meta-item">Última actualización: <strong>18 de noviembre de 2026</strong></div>
+          <div class="meta-item">Responsable: <strong>mediXI (Equipo de Privacidad)</strong></div>
+          <div class="meta-item">Contacto: <strong>medixiapp@gmail.com</strong></div>
+        </div>
+      </div>
+
+      <h2>1. Declaración de Principios y Compromiso con la Privacidad</h2>
+      <p>En <strong>mediXI</strong>, entendemos que la tranquilidad y la intimidad son los pilares fundamentales para el trabajo profundo, la creatividad y la colaboración profesional. Nuestra arquitectura técnica está fundamentada en la privacidad por defecto (<em>Privacy by Design</em>), la soberanía de datos local-first y la minimización radical de información personal.</p>
+      <p>Cumplimos escrupulosamente con el <strong>Reglamento General de Protección de Datos (RGPD UE 2016/679)</strong>, la <strong>Ley Orgánica 3/2018 (LOPDGDD)</strong> de España, y los requisitos de Apple App Store y Google Play.</p>
+
+      <h2>2. Responsable del Tratamiento y Contacto</h2>
+      <p>Para cualquier consulta sobre privacidad o ejercicio de derechos sobre los datos tratados en la aplicación:</p>
+      <ul>
+        <li><strong>Responsable del Servicio:</strong> mediXI (Equipo de Privacidad y Protección de Datos)</li>
+        <li><strong>Ubicación:</strong> Barcelona, España (Unión Europea)</li>
+        <li><strong>Correo electrónico de contacto:</strong> <a href="mailto:medixiapp@gmail.com">medixiapp@gmail.com</a></li>
+      </ul>
+
+      <h2>3. Datos Personales Recopilados y Finalidad</h2>
+      <h3>A. Cuenta y Autenticación</h3>
+      <p>Nombre o alias, correo electrónico y clave protegida con hash criptográfico irreversible a través de Supabase Auth. Base legal: Ejecución del contrato de servicio (Art. 6.1.b RGPD).</p>
+
+      <h3>B. Perfil de Gremio Profesional</h3>
+      <p>Gremio (Tecnología e Inteligencia Artificial, Diseño, Estrategia, Creadores), rol profesional, enfoque de proyecto actual, barrio de trabajo e idiomas. Base legal: Consentimiento expreso (Art. 6.1.a RGPD).</p>
+
+      <div class="callout">
+        <h3>C. Privacidad Física Radical: Cero Rastreo GPS</h3>
+        <p>mediXI <strong>NO</strong> solicita permisos de geolocalización en segundo plano, <strong>NO</strong> rastrea coordenadas GPS del dispositivo y <strong>NO</strong> crea mapas de calor de movimientos. El check-in en una cafetería es 100% voluntario y expira de forma automática a las 3 horas (Auto Check-out).</p>
+      </div>
+
+      <h3>D. Contenido Compartido y Muro Social</h3>
+      <p>Fotos voluntarias de tu mesa o espacio de trabajo y textos descriptivos para inspirar a otros miembros. Conservas en todo momento la titularidad intelectual de tus publicaciones.</p>
+
+      <h3>E. Mensajería Directa</h3>
+      <p>Mensajes privados entre profesionales coordinando sesiones o proyectos compartidos, almacenados de forma local en primer plano y transmitidos de forma cifrada.</p>
+
+      <h2>4. Cero Publicidad y Cero Venta de Datos</h2>
+      <p>mediXI <strong>NO</strong> vende ni comercializa datos personales a terceros. mediXI <strong>NO</strong> incluye redes de anuncios comportamentales ni herramientas de rastreo entre aplicaciones (<em>Tracking = FALSE</em>).</p>
+
+      <h2>5. Proveedores de Infraestructura</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Proveedor</th>
+            <th>Servicio</th>
+            <th>Ubicación</th>
+            <th>Garantías</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Supabase Inc.</strong></td>
+            <td>Autenticación y base de datos PostgreSQL cifrada</td>
+            <td>Unión Europea (Irlanda)</td>
+            <td>SOC 2 Tipo II, RLS estricto, RGPD</td>
+          </tr>
+          <tr>
+            <td><strong>Apple Inc.</strong></td>
+            <td>Distribución iOS (App Store)</td>
+            <td>UE y Global</td>
+            <td>Apple Privacy Sandbox</td>
+          </tr>
+          <tr>
+            <td><strong>Google LLC</strong></td>
+            <td>Distribución Android (Google Play)</td>
+            <td>UE y Global</td>
+            <td>Google Play Data Safety</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>6. Eliminación Definitiva de Cuenta en la App</h2>
+      <div class="callout">
+        <p><strong>Cumplimiento Apple Guideline 5.1.1(v) y Art. 17 RGPD:</strong> Puedes eliminar tu cuenta de forma inmediata e irreversible directamente desde la aplicación: entra en <strong>Perfil → Ajustes → Eliminar cuenta y mis datos</strong>. Todo tu perfil, publicaciones, favoritos y mensajes serán destruidos sin demora.</p>
+        <p style="margin-top: 0.5rem;">También puedes solicitar la eliminación por correo electrónico escribiendo directamente a <a href="mailto:medixiapp@gmail.com">medixiapp@gmail.com</a>.</p>
+      </div>
+
+      <h2>7. Moderación Reactiva y Denuncias (Apple Guideline 1.2)</h2>
+      <p>Dispones de herramientas nativas de <strong>bloqueo instantáneo</strong> de usuarios y <strong>denuncia de contenido ofensivo</strong> en cada perfil, mensaje y publicación. Nuestro equipo atiende todas las denuncias con un SLA de respuesta inferior a 24 horas.</p>
+
+      <h2>8. Ejercicio de Derechos ARCO y RGPD</h2>
+      <p>Puedes ejercer en cualquier momento tus derechos de acceso, rectificación, supresión, limitación, portabilidad y oposición escribiendo a <a href="mailto:medixiapp@gmail.com">medixiapp@gmail.com</a>. Si lo consideras oportuno, puedes presentar una reclamación ante la Agencia Española de Protección de Datos (AEPD) en <a href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a>.</p>
+    </article>
+
+    <!-- TAB 2: TERMINOS DE USO -->
+    <article id="terms" class="doc-section">
+      <div class="doc-header">
+        <span class="badge">Condiciones de Servicio y Convivencia</span>
+        <h1>Términos de Uso de mediXI</h1>
+        <div class="meta-bar">
+          <div class="meta-item">Última actualización: <strong>18 de noviembre de 2026</strong></div>
+          <div class="meta-item">Servicio: <strong>mediXI</strong></div>
+          <div class="meta-item">Contacto: <strong>medixiapp@gmail.com</strong></div>
+        </div>
+      </div>
+
+      <h2>1. Aceptación de los Términos</h2>
+      <p>Al descargar o utilizar la aplicación móvil mediXI, aceptas expresamente cumplir estos Términos de Uso y nuestra Política de Privacidad. Si no estás de acuerdo con alguna cláusula, no debes utilizar la aplicación.</p>
+
+      <h2>2. Descripción del Servicio</h2>
+      <p>mediXI es un club y directorio tecnológico que conecta a profesionales independientes, nómadas digitales y creadores con cafeterías de especialidad seleccionadas (Nodos de Gremio) para facilitar el trabajo individual y la colaboración interdisciplinar (Efecto Medici).</p>
+
+      <div class="callout">
+        <h2>3. Tolerancia Cero frente a Contenidos Ofensivos (Apple Guideline 1.2)</h2>
+        <p>Queda terminantemente prohibido publicar o comunicar cualquier contenido que resulte ofensivo, difamatorio, acosador, discriminatorio, violento, pornográfico o ilícito. mediXI aplica <strong>tolerancia cero</strong>:</p>
+        <ul style="margin-top: 0.5rem;">
+          <li><strong>Bloqueo inmediato:</strong> Puedes bloquear a cualquier usuario desde su perfil o publicación para ocultar su actividad de inmediato.</li>
+          <li><strong>Reporte de infracción:</strong> Puedes reportar publicaciones o conductas inapropiadas con clasificación de motivo.</li>
+          <li><strong>SLA de actuación:</strong> El equipo de mediXI revisa e interviene los reportes en menos de 24 horas, expulsando definitivamente a los usuarios infractores.</li>
+        </ul>
+      </div>
+
+      <h2>4. Normas de Convivencia en Cafeterías (Código de Honor)</h2>
+      <ul>
+        <li><strong>Consumo responsable:</strong> Ocupar mesas de trabajo en las cafeterías asociadas requiere mantener un consumo regular en el local.</li>
+        <li><strong>Respeto al Modo Foco:</strong> Si un miembro activa el Modo Foco, no se le debe interrumpir.</li>
+        <li><strong>Auriculares obligatorios:</strong> Las reuniones virtuales y audios deben escucharse exclusivamente a través de auriculares.</li>
+        <li><strong>Prohibida la prospección comercial agresiva:</strong> mediXI no es un canal de telemarketing ni de ventas invasivas en mesa.</li>
+      </ul>
+
+      <h2>5. Propiedad Intelectual</h2>
+      <p>La marca mediXI, su diseño visual Quiet Luxury, la arquitectura de software y el catálogo curado de espacios pertenecen en exclusiva a mediXI. El usuario conserva todos los derechos morales y de autor sobre el material que publique.</p>
+
+      <h2>6. Cancelación y Supresión</h2>
+      <p>Puedes darte de baja y borrar tu cuenta en cualquier momento desde <strong>Perfil → Ajustes → Eliminar cuenta y mis datos</strong>. mediXI puede cancelar el acceso a cualquier usuario que vulnere estas normas de convivencia.</p>
+
+      <h2>7. Limitación de Responsabilidad</h2>
+      <p>Las cafeterías y espacios recomendados son establecimientos independientes de terceros. mediXI no responde de variaciones de aforo, horarios o conexión WiFi propios de cada local.</p>
+
+      <h2>8. Ley Aplicable y Jurisdicción</h2>
+      <p>Estos Términos se rigen por las leyes de España y la Unión Europea. Para dirimir cualquier litigio, las partes se someten a la competencia de los juzgados y tribunales de la ciudad de Barcelona, España.</p>
+
+      <h2>9. Contacto Oficial</h2>
+      <p>Para consultas relativas a estos términos, escríbenos a <a href="mailto:medixiapp@gmail.com">medixiapp@gmail.com</a>.</p>
+    </article>
+  </main>
+
+  <footer id="legal-footer">
+    <p>© 2026 mediXI. Todos los derechos reservados. Barcelona, España · <a href="mailto:medixiapp@gmail.com">medixiapp@gmail.com</a></p>
+  </footer>
+
+  <script>
+    (function checkVerificationRedirect() {
+      var hash = window.location.hash || '';
+      var search = window.location.search || '';
+      var isAuthCallback =
+        hash.indexOf('access_token=') !== -1 ||
+        hash.indexOf('type=signup') !== -1 ||
+        hash.indexOf('type=email') !== -1 ||
+        hash.indexOf('type=magiclink') !== -1 ||
+        search.indexOf('verified=') !== -1 ||
+        search.indexOf('code=') !== -1 ||
+        search.indexOf('type=signup') !== -1;
+
+      if (isAuthCallback && search.indexOf('doc=') === -1) {
+        document.body.classList.add('is-verified');
+        document.title = 'mediXI — Correo verificado';
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState(null, document.title, window.location.pathname + '?verified=1');
+        }
+      } else if (search.indexOf('doc=terms') !== -1 || hash === '#terms') {
+        switchTab('terms');
+      }
+    })();
+
+    function openLegalSection(tabId) {
+      document.body.classList.remove('is-verified');
+      document.title = 'mediXI — Centro Legal, Privacidad y Términos de Uso';
+      switchTab(tabId);
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(function(btn) { btn.classList.remove('active'); });
+      document.querySelectorAll('.doc-section').forEach(function(sec) { sec.classList.remove('active'); });
+
+      if (tabId === 'privacy') {
+        document.querySelectorAll('.tab-btn')[0].classList.add('active');
+        document.getElementById('privacy').classList.add('active');
+      } else {
+        document.querySelectorAll('.tab-btn')[1].classList.add('active');
+        document.getElementById('terms').classList.add('active');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
