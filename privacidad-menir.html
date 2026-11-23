@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidad — Menir | A-Z DISSENY, S.L.</title>
+  <meta name="description" content="Política de Privacidad oficial de Menir: Bloqueador de Apps. Funcionamiento 100 % local en tu dispositivo, cero recopilación de datos, sin analíticas ni publicidad.">
+  <meta name="theme-color" content="#09090b">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #09090b;
+      --surface: #111114;
+      --card: rgba(24, 24, 28, 0.78);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.16);
+      --text-primary: #f5f5f7;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --accent: #e4e4e7;
+      --badge-bg: rgba(52, 199, 89, 0.12);
+      --badge-text: #34c759;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      background-image: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.045), transparent 55%);
+      color: var(--text-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      padding: 0 20px 80px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      margin: 0 -20px 44px;
+      padding: 14px 20px;
+      background: rgba(9, 9, 11, 0.78);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topbar-inner {
+      max-width: 820px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .brand-name {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .brand-tag {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    .lang-nav {
+      display: flex;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 4px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+    }
+
+    .lang-nav a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 999px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .lang-nav a:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-primary);
+    }
+
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    header.hero {
+      margin-bottom: 36px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      border: 1px solid rgba(52, 199, 89, 0.22);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(28px, 4.5vw, 38px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 14px;
+      color: var(--text-primary);
+    }
+
+    .meta {
+      color: var(--text-secondary);
+      font-size: 14px;
+      display: grid;
+      gap: 4px;
+    }
+
+    .meta strong {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 26px 28px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    h2 {
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+      color: var(--text-primary);
+    }
+
+    p {
+      color: var(--text-secondary);
+      font-size: 15px;
+      margin-bottom: 14px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    ul {
+      margin: 10px 0 14px 20px;
+      color: var(--text-secondary);
+      font-size: 15px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    li:last-child {
+      margin-bottom: 0;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 13px;
+      color: var(--accent);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+
+    .highlight-box {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-top: 14px;
+    }
+
+    .highlight-box h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+
+    .section-divider {
+      margin: 56px 0 36px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border-strong);
+    }
+
+    a.link {
+      color: var(--text-primary);
+      text-decoration: underline;
+      text-decoration-color: rgba(255, 255, 255, 0.35);
+      text-underline-offset: 3px;
+      transition: text-decoration-color 0.2s ease;
+    }
+
+    a.link:hover {
+      text-decoration-color: var(--text-primary);
+    }
+
+    footer {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 20px;
+      }
+      .highlight-box {
+        padding: 16px;
+      }
+      .brand-tag {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar" aria-label="Selector de idioma">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="brand-name">Menir</span>
+        <span class="brand-tag">A-Z DISSENY, S.L.</span>
+      </div>
+      <div class="lang-nav">
+        <a href="#es">Español</a>
+        <a href="#en">English</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- VERSIÓN EN ESPAÑOL -->
+    <section id="es" lang="es">
+      <header class="hero">
+        <div class="badge">Local-First · Cero Recopilación de Datos</div>
+        <h1>Política de Privacidad de Menir</h1>
+        <div class="meta">
+          <div><strong>Aplicación:</strong> Menir (Menir: Bloqueador de Apps)</div>
+          <div><strong>Responsable y Desarrollador:</strong> A-Z DISSENY, S.L. (Barcelona, España)</div>
+          <div><strong>Contacto de soporte y privacidad:</strong> <a class="link" href="mailto:azdisseny.sl@gmail.com">azdisseny.sl@gmail.com</a></div>
+          <div><strong>Última actualización:</strong> 24 de noviembre de 2026</div>
+        </div>
+      </header>
+
+      <div class="card">
+        <h2>1. Cero recopilación de datos (Local-First)</h2>
+        <p>
+          <strong>Menir</strong> está diseñada para funcionar al <strong>100 % en tu dispositivo</strong>. Toda la configuración de bloqueo y el funcionamiento de la aplicación se ejecutan exclusivamente en local.
+        </p>
+        <p>
+          Menir <strong>no recopila, no almacena en servidores externos, no vende ni comparte con terceros</strong> datos personales, historial de navegación, estadísticas de uso de aplicaciones ni métricas de actividad.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>2. Permisos del sistema</h2>
+        <p>
+          Para cumplir su función de bloquear las aplicaciones que el propio usuario selecciona, Menir solicita únicamente los permisos nativos indispensables del sistema operativo. <strong>Ningún dato derivado de estos permisos sale jamás del teléfono.</strong>
+        </p>
+
+        <div class="highlight-box">
+          <h3>iOS (Apple Screen Time API)</h3>
+          <p>
+            En iOS, Menir utiliza los frameworks oficiales de Apple (<code>FamilyControls</code>, <code>ManagedSettings</code> y <code>DeviceActivity</code> / Screen Time API) exclusivamente de forma local en el dispositivo para restringir el acceso a las aplicaciones que el propio usuario elige.
+          </p>
+        </div>
+
+        <div class="highlight-box">
+          <h3>Android (Accesibilidad y Superposición)</h3>
+          <p>
+            En Android, Menir utiliza el Servicio de Accesibilidad y el permiso de superposición exclusivamente de forma local en el dispositivo para detectar e interceptar la apertura de las aplicaciones elegidas por el usuario. No lee contenidos privados ni envía información al exterior.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>3. Sin analíticas, sin publicidad y sin cuentas obligatorias</h2>
+        <ul>
+          <li><strong>Sin analíticas de terceros:</strong> Menir no integra SDKs de rastreo, telemetría ni herramientas de análisis externas.</li>
+          <li><strong>Sin publicidad:</strong> La aplicación no muestra anuncios ni comparte identificadores publicitarios.</li>
+          <li><strong>Sin cuentas obligatorias:</strong> Puedes utilizar Menir sin registrarte ni facilitar correo electrónico, nombre o contraseñas.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>4. Control del usuario y eliminación de datos</h2>
+        <p>
+          Al procesarse todo exclusivamente en tu dispositivo, mantienes el control total en todo momento. Puedes revocar los permisos del sistema desde los ajustes de iOS o Android cuando lo desees, o desinstalar Menir para eliminar de inmediato toda la configuración local.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>5. Contacto</h2>
+        <p>
+          Si tienes dudas sobre esta Política de Privacidad o necesitas soporte técnico con Menir, puedes escribirnos directamente a:
+        </p>
+        <p>
+          <strong>A-Z DISSENY, S.L.</strong> (Barcelona, España)<br>
+          Correo electrónico: <a class="link" href="mailto:azdisseny.sl@gmail.com">azdisseny.sl@gmail.com</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ENGLISH VERSION -->
+    <section id="en" lang="en" class="section-divider">
+      <header class="hero">
+        <div class="badge">Local-First · Zero Data Collection</div>
+        <h1>Privacy Policy — Menir</h1>
+        <div class="meta">
+          <div><strong>App:</strong> Menir (Menir: App Blocker)</div>
+          <div><strong>Developer and Data Controller:</strong> A-Z DISSENY, S.L. (Barcelona, Spain)</div>
+          <div><strong>Support and privacy contact:</strong> <a class="link" href="mailto:azdisseny.sl@gmail.com">azdisseny.sl@gmail.com</a></div>
+          <div><strong>Last updated:</strong> November 24, 2026</div>
+        </div>
+      </header>
+
+      <div class="card">
+        <h2>1. Zero Data Collection (Local-First)</h2>
+        <p>
+          <strong>Menir</strong> operates <strong>100% on-device</strong>. All blocking rules and app functionality run strictly locally on your phone.
+        </p>
+        <p>
+          Menir <strong>does not collect, transmit, store on external servers, sell, or share with third parties</strong> any personal data, browsing history, app usage statistics, or activity metrics.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>2. System Permissions</h2>
+        <p>
+          To block the applications chosen by the user, Menir relies solely on native operating system frameworks. <strong>No data from these permissions ever leaves your device.</strong>
+        </p>
+
+        <div class="highlight-box">
+          <h3>iOS (Apple Screen Time API)</h3>
+          <p>
+            On iOS, Menir uses Apple's official frameworks (<code>FamilyControls</code>, <code>ManagedSettings</code>, and <code>DeviceActivity</code> / Screen Time API) strictly on-device to restrict access to the apps selected by the user.
+          </p>
+        </div>
+
+        <div class="highlight-box">
+          <h3>Android (Accessibility and Overlay)</h3>
+          <p>
+            On Android, Menir uses the Accessibility Service and display overlay permission strictly locally to detect and intercept launches of user-selected apps. No screen content or personal information is collected or sent off-device.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>3. No Analytics, No Ads, No Mandatory Accounts</h2>
+        <ul>
+          <li><strong>No third-party analytics:</strong> Menir contains no tracking SDKs, telemetry, or external analytics tools.</li>
+          <li><strong>No advertising:</strong> The app displays no ads and does not access or share advertising identifiers.</li>
+          <li><strong>No required accounts:</strong> You can use Menir without creating an account or providing personal information.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>4. User Control and Data Removal</h2>
+        <p>
+          Because all preferences remain exclusively on your device, you have full control at all times. You may revoke system permissions at any time from your iOS or Android settings, or uninstall Menir to permanently remove all local configuration.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>5. Contact</h2>
+        <p>
+          For any privacy inquiries or support requests regarding Menir, please contact:
+        </p>
+        <p>
+          <strong>A-Z DISSENY, S.L.</strong> (Barcelona, Spain)<br>
+          Email: <a class="link" href="mailto:azdisseny.sl@gmail.com">azdisseny.sl@gmail.com</a>
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <div>© 2026 A-Z DISSENY, S.L. Barcelona, España.</div>
+      <div>Menir · Privacidad Local-First</div>
+    </footer>
+  </main>
+</body>
+</html>
