@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidad — Matinium | A-Z DISSENY, S.L.</title>
+  <meta name="description" content="Política de Privacidad oficial de Matinium. Funcionamiento 100 % local en tu dispositivo, cero recopilación de datos, sin analíticas, sin cuentas ni publicidad.">
+  <meta name="theme-color" content="#F3EDE2">
+  <style>
+    :root {
+      --bg: #F3EDE2;
+      --surface: #ECE4D6;
+      --card: #F8F4EC;
+      --border: rgba(38, 35, 31, 0.10);
+      --border-strong: rgba(38, 35, 31, 0.18);
+      --text-primary: #26231F;
+      --text-secondary: #5C554B;
+      --text-muted: #847B6F;
+      --accent: #6F8069;
+      --badge-bg: rgba(111, 128, 105, 0.14);
+      --badge-text: #4C5D46;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-primary);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      padding: 0 20px 80px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      margin: 0 -20px 44px;
+      padding: 14px 20px;
+      background: rgba(243, 237, 226, 0.86);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topbar-inner {
+      max-width: 820px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .brand-name {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+    }
+
+    .brand-tag {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    .lang-nav {
+      display: flex;
+      gap: 6px;
+      background: var(--surface);
+      padding: 4px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+    }
+
+    .lang-nav a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 999px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .lang-nav a:hover {
+      background: var(--card);
+      color: var(--text-primary);
+    }
+
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    header.hero {
+      margin-bottom: 34px;
+      padding-bottom: 26px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      border: 1px solid rgba(111, 128, 105, 0.26);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 999px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(28px, 4.5vw, 38px);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.18;
+      margin-bottom: 14px;
+      color: var(--text-primary);
+    }
+
+    .meta {
+      color: var(--text-secondary);
+      font-size: 14px;
+      display: grid;
+      gap: 4px;
+    }
+
+    .meta strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 26px 28px;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+
+    p {
+      color: var(--text-secondary);
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    ul {
+      margin: 10px 0 12px 20px;
+      color: var(--text-secondary);
+      font-size: 15px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    li:last-child {
+      margin-bottom: 0;
+    }
+
+    code {
+      font-family: Menlo, ui-monospace, SFMono-Regular, Monaco, Consolas, monospace;
+      font-size: 13px;
+      color: var(--text-primary);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+
+    .highlight-box {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-top: 12px;
+    }
+
+    .highlight-box h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text-primary);
+    }
+
+    .section-divider {
+      margin: 56px 0 36px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border-strong);
+    }
+
+    a.link {
+      color: var(--text-primary);
+      text-decoration: underline;
+      text-decoration-color: rgba(38, 35, 31, 0.35);
+      text-underline-offset: 3px;
+      transition: text-decoration-color 0.2s ease;
+    }
+
+    a.link:hover {
+      text-decoration-color: var(--text-primary);
+    }
+
+    footer {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 20px;
+      }
+      .highlight-box {
+        padding: 15px;
+      }
+      .brand-tag {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar" aria-label="Selector de idioma">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="brand-name">Matinium</span>
+        <span class="brand-tag">A-Z DISSENY, S.L.</span>
+      </div>
+      <div class="lang-nav">
+        <a href="#es">Español</a>
+        <a href="#en">English</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- VERSIÓN EN ESPAÑOL -->
+    <section id="es" lang="es">
+      <header class="hero">
+        <div class="badge">Local-First · Cero Recopilación de Datos</div>
+        <h1>Política de Privacidad de Matinium</h1>
+        <div class="meta">
+          <div><strong>Aplicación:</strong> Matinium (<code>com.sandaproject.matinium</code>)</div>
+          <div><strong>Responsable y Desarrollador:</strong> A-Z DISSENY, S.L. (Barcelona, España)</div>
+          <div><strong>Contacto de soporte y privacidad:</strong> <a class="link" href="mailto:azdisseny.sl@gmail.com">azdisseny.sl@gmail.com</a></div>
+          <div><strong>Última actualización:</strong> 26 de noviembre de 2026</div>
+        </div>
+      </header>
+
+      <div class="card">
+        <h2>1. Cero recopilación de datos (100 % Local-First)</h2>
+        <p>
+          <strong>Matinium</strong> está diseñada como un cuaderno sereno y privado que funciona al <strong>100 % en tu dispositivo</strong>. Todas tus visiones, focos diarios, aprendizajes, gratitudes y reflexiones se guardan únicamente en el almacenamiento local privado del teléfono (<code>UserDefaults</code> en iOS / <code>SharedPreferences</code> en Android).
+        </p>
+        <p>
+          Matinium <strong>no recopila, no transmite, no almacena en servidores externos, no vende ni comparte con terceros</strong> ningún dato personal ni ningún texto escrito por el usuario.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>2. Permisos del sistema</h2>
+        <p>
+          Matinium solicita únicamente permisos mínimos y opcionales necesarios para su funcionamiento cotidiano. <strong>Ningún dato derivado de estos permisos abandona jamás tu dispositivo.</strong>
+        </p>
+
+        <div class="highlight-box">
+          <h3>Notificaciones locales (opcional)</h3>
+          <p>
+            Si concedes permiso, Matinium programa recordatorios exclusivamente locales en tu dispositivo para los rituales de mañana y noche en tu zona horaria. No utiliza servidores de notificaciones push externos ni recopila tokens de dispositivo.
+          </p>
+        </div>
+
+        <div class="highlight-box">
+          <h3>Copia de seguridad manual (portapapeles)</h3>
+          <p>
+            Cuando decides exportar o importar tu cuaderno en formato JSON, la operación se realiza únicamente bajo tu acción directa usando el portapapeles local del dispositivo.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>3. Sin analíticas, sin publicidad y sin cuentas</h2>
+        <ul>
+          <li><strong>Sin analíticas de terceros:</strong> Matinium no incluye SDKs de seguimiento, telemetría ni herramientas analíticas externas.</li>
+          <li><strong>Sin publicidad:</strong> La aplicación no muestra anuncios ni accede a identificadores publicitarios.</li>
+          <li><strong>Sin registro ni cuentas:</strong> Puedes usar Matinium de forma inmediata sin facilitar correo electrónico, nombre ni contraseñas.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>4. Control del usuario y eliminación de datos</h2>
+        <p>
+          Al residir todo exclusivamente en tu dispositivo, mantienes soberanía total sobre tu cuaderno en todo momento. Puedes exportar una copia manual cuando quieras, revocar las notificaciones desde los ajustes de iOS o Android, o desinstalar Matinium para eliminar de forma inmediata e irreversible todos tus registros locales.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>5. Contacto</h2>
+        <p>
+          Si tienes cualquier duda sobre esta Política de Privacidad o necesitas soporte técnico con Matinium, puedes escribirnos directamente a:
+        </p>
+        <p>
+          <strong>A-Z DISSENY, S.L.</strong> (Barcelona, España)<br>
+          Correo electrónico: <a class="link" href="mailto:azdisseny.sl@gmail.com">azdisseny.sl@gmail.com</a><br>
+          Soporte web: <a class="link" href="https://sandaprojectaz.netlify.app" target="_blank" rel="noopener">https://sandaprojectaz.netlify.app</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ENGLISH VERSION -->
+    <section id="en" lang="en" class="section-divider">
+      <header class="hero">
+        <div class="badge">Local-First · Zero Data Collection</div>
+        <h1>Privacy Policy — Matinium</h1>
+        <div class="meta">
+          <div><strong>App:</strong> Matinium (<code>com.sandaproject.matinium</code>)</div>
+          <div><strong>Developer and Data Controller:</strong> A-Z DISSENY, S.L. (Barcelona, Spain)</div>
+          <div><strong>Support and privacy contact:</strong> <a class="link" href="mailto:azdisseny.sl@gmail.com">azdisseny.sl@gmail.com</a></div>
+          <div><strong>Last updated:</strong> November 26, 2026</div>
+        </div>
+      </header>
+
+      <div class="card">
+        <h2>1. Zero Data Collection (100% Local-First)</h2>
+        <p>
+          <strong>Matinium</strong> is designed as a private, serene journal that runs <strong>100% on your device</strong>. All of your daily intentions, priorities, learnings, gratitude notes, and weekly reflections are stored strictly in private local device storage (<code>UserDefaults</code> on iOS / <code>SharedPreferences</code> on Android).
+        </p>
+        <p>
+          Matinium <strong>does not collect, transmit, store on external servers, sell, or share with third parties</strong> any personal data or user-written journal content.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>2. System Permissions</h2>
+        <p>
+          Matinium requests only minimal, optional permissions required for its core ritual experience. <strong>No data from these permissions ever leaves your device.</strong>
+        </p>
+
+        <div class="highlight-box">
+          <h3>Local Notifications (Optional)</h3>
+          <p>
+            If enabled, Matinium schedules strictly on-device local notifications for your morning and evening rituals in your local time zone. No external push notification servers or device tokens are used.
+          </p>
+        </div>
+
+        <div class="highlight-box">
+          <h3>Manual Backup (Clipboard)</h3>
+          <p>
+            When you choose to export or restore your journal as JSON, the operation happens solely on-device at your explicit request using the local clipboard.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>3. No Analytics, No Ads, No Accounts</h2>
+        <ul>
+          <li><strong>No third-party analytics:</strong> Matinium contains no tracking SDKs, telemetry, or external analytics tools.</li>
+          <li><strong>No advertising:</strong> The app displays no ads and does not access or share advertising identifiers.</li>
+          <li><strong>No accounts required:</strong> You can use Matinium immediately without registering or providing an email address, name, or password.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>4. User Control and Data Removal</h2>
+        <p>
+          Because all entries reside solely on your device, you remain in full control at all times. You may export a manual backup whenever you wish, disable notifications in iOS or Android settings, or uninstall Matinium to immediately and permanently remove all local data.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>5. Contact</h2>
+        <p>
+          For any privacy inquiries or support requests regarding Matinium, please contact:
+        </p>
+        <p>
+          <strong>A-Z DISSENY, S.L.</strong> (Barcelona, Spain)<br>
+          Email: <a class="link" href="mailto:azdisseny.sl@gmail.com">azdisseny.sl@gmail.com</a><br>
+          Support website: <a class="link" href="https://sandaprojectaz.netlify.app" target="_blank" rel="noopener">https://sandaprojectaz.netlify.app</a>
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <div>© 2026 A-Z DISSENY, S.L. Barcelona, España.</div>
+      <div>Matinium · Privacidad Local-First</div>
+    </footer>
+  </main>
+</body>
+</html>
